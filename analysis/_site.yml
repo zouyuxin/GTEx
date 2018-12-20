@@ -1,7 +1,7 @@
-name: "GTEx-V8"
+name: "GTEx"
 output_dir: "../docs"
 navbar:
-  title: "GTEx-V8"
+  title: "GTEx"
   left:
     - text: "Home"
       href: index.html

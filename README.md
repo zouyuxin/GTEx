@@ -1,4 +1,4 @@
-# GTEx-V8
+# GTEx
 
 A [workflowr][] project.
 
