@@ -4,7 +4,7 @@ author: "Yuxin Zou"
 date: 2018-12-20
 output:
     workflowr::wflow_html:
-      code_folding: show
+      code_folding: hide
 ---
 ```{r opts, echo = FALSE}
 knitr::opts_chunk$set(
