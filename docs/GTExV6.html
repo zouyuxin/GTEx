@@ -177,7 +177,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
+  window.initializeCodeFolding("hide" === "show");
 });
 </script>
 
@@ -365,14 +365,13 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/26398fd30fc73ff541c7cd595cddc46de5e282a1" target="_blank">26398fd</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/7a80fc6ef4413c508bbce17a77f60d560f8b15f0" target="_blank">7a80fc6</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    output/.DS_Store
 
 Untracked files:
@@ -417,6 +416,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/7a80fc6ef4413c508bbce17a77f60d560f8b15f0/analysis/GTExV6.Rmd" target="_blank">7a80fc6</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/GTExV6.html" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -540,7 +573,97 @@ par(mfrow = c(2, 3))
 for(k in 1:16){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
-<p><img src="figure/GTExV6.Rmd/flash%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6.Rmd/flash%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6.Rmd/flash%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/GTExV6.Rmd/flash%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash factors plot-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/flash factors plot-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6.Rmd/flash%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash factors plot-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/flash factors plot-2.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6.Rmd/flash%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash factors plot-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/flash factors plot-3.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>fll_model = flash_pipeline(fl_model$ldf$l)
 saveRDS(fll_model, &#39;output/GTExV6/flash_loading_model.rds&#39;)</code></pre>
 <pre class="r"><code>U.pca = cov_pca(data.strong, 5)</code></pre>
@@ -620,6 +743,36 @@ corrplot::corrplot(V.current, method=&#39;color&#39;, type=&#39;upper&#39;, tl.c
 &quot;upper&quot;, : Not been able to calculate text margin, please try again with a
 clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
 <p><img src="figure/GTExV6.Rmd/V-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of V-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/V-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code># dev.off()</code></pre>
 <pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3))
 logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ))
@@ -689,20 +842,260 @@ V3
 </table>
 <pre class="r"><code>barplot(get_estimated_pi(m_ignore), las=2, cex.names = 0.7, main = &#39;Ignore EE&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_simple), las=2, cex.names = 0.7, main = &#39;Simple EE&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-2.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_current), las=2, cex.names = 0.7, main = &#39;Current EE&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-3.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_V3), las=2, cex.names = 0.7, main = &#39;V3 EE&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-4.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-4.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-4.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_ignore_EZ), las=2, cex.names = 0.7, main = &#39;Ignore EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-5.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-5.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-5.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-6.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-6.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-6.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_current_EZ), las=2, cex.names = 0.7, main = &#39;Current EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-7.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-7.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-7.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_V3_EZ), las=2, cex.names = 0.7, main = &#39;V3 EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-8.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-8.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-8.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_ignore)), 
               length(get_significant_results(m_simple)), 
@@ -793,6 +1186,36 @@ ggplot(stronggene, aes(y = EffectSize, x = Group)) +
   geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000135315&#39;) + ylim(c(-0.7,1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-15-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-15-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[5034,])
 colnames(stronggeneSimple) = &#39;EffectSize&#39;
 stronggeneSimple$Group = row.names(stronggeneSimple)
@@ -802,6 +1225,36 @@ ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-15-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-15-2.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[5034,])
 colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
@@ -811,6 +1264,36 @@ ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-15-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-15-3.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[5034,])
 colnames(stronggeneV3) = &#39;EffectSize&#39;
 stronggeneV3$Group = row.names(stronggeneV3)
@@ -820,6 +1303,36 @@ ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-4.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-15-4.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-15-4.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The gene <code>MCPH1</code>:</p>
 <pre class="r"><code>par(mfrow=c(1,3))
 stronggene = data.frame(gtex$strong.b[13837,])
@@ -830,6 +1343,36 @@ ggplot(stronggene, aes(y = EffectSize, x = Group)) +
   geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-16-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-16-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[13837,])
 colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
@@ -839,6 +1382,36 @@ ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-16-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-16-2.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[13837,])
 colnames(stronggeneV3) = &#39;EffectSize&#39;
 stronggeneV3$Group = row.names(stronggeneV3)
@@ -848,6 +1421,36 @@ ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-16-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-16-3.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The gene significant in <code>V3 EZ</code>, not in <code>current EZ</code>:</p>
 <pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1]
 par(mfrow=c(1,3))
@@ -860,6 +1463,36 @@ ggplot(stronggene, aes(y = EffectSize, x = Group)) +
   geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000126243&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-17-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-17-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
 colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
@@ -869,6 +1502,36 @@ ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-17-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-17-2.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[ind,])
 colnames(stronggeneV3) = &#39;EffectSize&#39;
 stronggeneV3$Group = row.names(stronggeneV3)
@@ -878,6 +1541,36 @@ ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-17-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-17-3.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The pairwise sharing by magnitude</p>
 <pre class="r"><code>par(mfrow = c(1,2))
 x           &lt;- get_pairwise_sharing(m_ignore_EZ)
@@ -898,6 +1591,36 @@ corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot
 &quot;black&quot;, : Not been able to calculate text margin, please try again with a
 clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-18-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>par(mfrow=c(1,2))
 x           &lt;- get_pairwise_sharing(m_current_EZ)
 colnames(x) &lt;- colnames(get_lfsr(m_current_EZ))
@@ -914,6 +1637,36 @@ corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot
 &quot;black&quot;, : Not been able to calculate text margin, please try again with a
 clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-19-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-19-1.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
