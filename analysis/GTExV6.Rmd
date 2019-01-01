@@ -6,11 +6,6 @@ output:
     workflowr::wflow_html:
       code_folding: hide
 ---
-```{r opts, echo = FALSE}
-knitr::opts_chunk$set(
-  fig.path = "output/GTExV6/Figures/"
-)
-```
 
 ```{r library}
 library(flashr)
@@ -222,7 +217,7 @@ m_V3 = readRDS('output/GTExV6/m_V3_genewide_post.rds')
 m_V3_EZ = readRDS('output/GTExV6/m_V3_genewide_EZ_post.rds')
 ```
 
-```{r V, fig.height=8,fig.width=8}
+```{r V, fig.align='center', fig.height=8,fig.width=8}
 # pdf('../output/GTExV6/Figures/SimpleV.pdf')
 corrplot::corrplot(V.simple, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'Simple', mar=c(0,0,5,0))
 # dev.off()
@@ -243,7 +238,7 @@ colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
 
-```{r plot weights, fig.height=8,fig.width=12}
+```{r plot weights, fig.align='center', fig.height=5,fig.width=20}
 par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_ignore), las=2, cex.names = 0.7, main = 'Ignore EE')
 barplot(get_estimated_pi(m_simple), las=2, cex.names = 0.7, main = 'Simple EE')
@@ -280,7 +275,7 @@ length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_ign
 ```
 
 The gene significant in `simple EZ`, not in `current EZ`:
-```{r fig.height=15,fig.width=15}
+```{r fig.align='center', fig.width=15, fig.height=15}
 stronggene = data.frame(gtex$strong.b[5034,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
@@ -319,7 +314,7 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
 The gene `MCPH1 `:
-```{r fig.height=8,fig.width=20}
+```{r fig.align='center',fig.height=8,fig.width=20}
 stronggene = data.frame(gtex$strong.b[13837,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
@@ -349,7 +344,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
 The gene significant in `V3 EZ`, not in `current EZ`:
-```{r fig.height=8,fig.width=20}
+```{r fig.align='center', fig.height=8,fig.width=20}
 ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1]
 
 stronggene = data.frame(gtex$strong.b[ind,])
@@ -382,7 +377,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 
 
 The pairwise sharing by magnitude
-```{r fig.height=10,fig.width=20}
+```{r fig.align='center',fig.height=10,fig.width=20}
 par(mfrow = c(1,2))
 x           <- get_pairwise_sharing(m_ignore_EZ)
 colnames(x) <- colnames(get_lfsr(m_ignore_EZ))
@@ -398,7 +393,7 @@ rownames(x) <- colnames(x)
 corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Simple EZ', mar=c(0,0,5,0))
 ```
 
-```{r fig.height=10,fig.width=20}
+```{r fig.align='center',fig.height=10,fig.width=20}
 par(mfrow=c(1,2))
 x           <- get_pairwise_sharing(m_current_EZ)
 colnames(x) <- colnames(get_lfsr(m_current_EZ))
