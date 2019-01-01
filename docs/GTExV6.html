@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yuxin Zou" />
+
+<meta name="date" content="2018-12-20" />
+
+<title>GTEx V6</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GTEx</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">GTEx V6</h1>
+<h4 class="author"><em>Yuxin Zou</em></h4>
+<h4 class="date"><em>2018-12-20</em></h4>
+
+</div>
+
+
+<p><strong>Last updated:</strong> 2019-01-01</p>
+<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<ul>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20181220)</code> </summary></p>
+<p>The command <code>set.seed(20181220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/26398fd30fc73ff541c7cd595cddc46de5e282a1" target="_blank">26398fd</a> </summary></p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  code/ED.R
+    Untracked:  code/mCurrent.R
+    Untracked:  code/mIgnore.R
+    Untracked:  code/mMLE.R
+    Untracked:  code/mSimple.R
+    Untracked:  code/mV3.R
+    Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
+    Untracked:  data/gene_names_GTEX_V6.txt
+    Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
+    Untracked:  data/order_index.rda
+    Untracked:  data/samples_id.txt
+    Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
+    Untracked:  output/GTExV6/
+
+</code></pre>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
+</li>
+</ul>
+<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/26398fd30fc73ff541c7cd595cddc46de5e282a1/analysis/GTExV6.Rmd" target="_blank">26398fd</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<p></details></p>
+<hr />
+<pre class="r"><code>library(flashr)
+library(mixsqp)
+library(mashr)</code></pre>
+<pre><code>Loading required package: ashr</code></pre>
+<pre class="r"><code>library(mclust)</code></pre>
+<pre><code>Package &#39;mclust&#39; version 5.4.1
+Type &#39;citation(&quot;mclust&quot;)&#39; for citing this R package in publications.</code></pre>
+<pre><code>
+Attaching package: &#39;mclust&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ashr&#39;:
+
+    dens</code></pre>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+library(ggplot2)</code></pre>
+<pre class="r"><code>gtex &lt;- readRDS(gzcon(url(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/MatrixEQTLSumStats.Portable.Z.rds?raw=TRUE&quot;)))</code></pre>
+<pre class="r"><code>strong.z = gtex$strong.z
+data.strong = mash_set_data(strong.z)
+data.random = mash_set_data(gtex$random.b, gtex$random.s)</code></pre>
+<div id="data-driven-covariances" class="section level2">
+<h2>Data Driven Covariances</h2>
+<p>Flash:</p>
+<pre class="r"><code>my_init_fn &lt;- function(Y, K = 1) {
+  ret = flashr:::udv_si(Y, K)
+  pos_sum = sum(ret$v[ret$v &gt; 0])
+  neg_sum = -sum(ret$v[ret$v &lt; 0])
+  if (neg_sum &gt; pos_sum) {
+    return(list(u = -ret$u, d = ret$d, v = -ret$v))
+  } else
+    return(ret)
+}
+
+flash_pipeline = function(data, ...) {
+  ## current state-of-the art
+  ## suggested by Jason Willwerscheid
+  ## cf: discussion section of
+  ## https://willwerscheid.github.io/MASHvFLASH/MASHvFLASHnn2.html
+  ebnm_fn = &quot;ebnm_ash&quot;
+  ebnm_param = list(l = list(mixcompdist = &quot;normal&quot;,
+                             optmethod = &quot;mixSQP&quot;),
+                    f = list(mixcompdist = &quot;+uniform&quot;,
+                             optmethod = &quot;mixSQP&quot;))
+  ##
+  fl_g &lt;- flashr:::flash_greedy_workhorse(data,
+                                          var_type = &quot;constant&quot;,
+                                          ebnm_fn = ebnm_fn,
+                                          ebnm_param = ebnm_param,
+                                          init_fn = &quot;my_init_fn&quot;,
+                                          stopping_rule = &quot;factors&quot;,
+                                          tol = 1e-3,
+                                          verbose_output = &quot;odF&quot;)
+  fl_b &lt;- flashr:::flash_backfit_workhorse(data,
+                                           f_init = fl_g,
+                                           var_type = &quot;constant&quot;,
+                                           ebnm_fn = ebnm_fn,
+                                           ebnm_param = ebnm_param,
+                                           stopping_rule = &quot;factors&quot;,
+                                           tol = 1e-3,
+                                           verbose_output = &quot;odF&quot;)
+  return(fl_b)
+}
+
+
+cov_flash = function(data, subset = NULL, non_canonical = FALSE, save_model = NULL) {
+  if(is.null(subset)) subset = 1:mashr:::n_effects(data)
+  b.center = apply(data$Bhat, 2, function(x) x - mean(x))
+  ## Only keep factors with at least two values greater than 1 / sqrt(n)
+  find_nonunique_effects &lt;- function(fl) {
+    thresh &lt;- 1/sqrt(ncol(fl$fitted_values))
+    vals_above_avg &lt;- colSums(fl$ldf$f &gt; thresh)
+    nonuniq_effects &lt;- which(vals_above_avg &gt; 1)
+    return(fl$ldf$f[, nonuniq_effects, drop = FALSE])
+  }
+  fmodel = flash_pipeline(b.center)
+  if (non_canonical)
+    flash_f = find_nonunique_effects(fmodel)
+  else 
+    flash_f = fmodel$ldf$f
+  ## row.names(flash_f) = colnames(b)
+  if (!is.null(save_model)) saveRDS(list(model=fmodel, factors=flash_f), save_model)
+  if(ncol(flash_f) == 0){
+    U.flash = list(&quot;tFLASH&quot; = t(fmodel$fitted_values) %*% fmodel$fitted_values / nrow(fmodel$fitted_values))
+  } else{
+    U.flash = c(cov_from_factors(t(as.matrix(flash_f)), &quot;FLASH&quot;),
+  list(&quot;tFLASH&quot; = t(fmodel$fitted_values) %*% fmodel$fitted_values / nrow(fmodel$fitted_values)))
+  }
+  
+  return(U.flash)
+}</code></pre>
+<pre class="r"><code>U.f = cov_flash(data.strong, non_canonical = TRUE, save_model = &#39;../output/GTExV6/flash_model.rds&#39;)
+saveRDS(U.f, &#39;output/GTExV6/flash_cov.rds&#39;)</code></pre>
+<pre class="r"><code>missing.tissues &lt;- c(7, 8, 19, 20, 24, 25, 31, 34, 37)
+gtex.colors &lt;- read.table(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE&quot;, sep = &#39;\t&#39;, comment.char = &#39;&#39;)[-missing.tissues, 2]
+gtex.colors &lt;- as.character(gtex.colors)
+
+fl_model = readRDS(&#39;output/GTExV6/flash_model.rds&#39;)$model
+factors = readRDS(&#39;output/GTExV6/flash_model.rds&#39;)$factors
+par(mfrow = c(2, 3))
+for(k in 1:16){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
+}</code></pre>
+<p><img src="figure/GTExV6.Rmd/flash%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6.Rmd/flash%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6.Rmd/flash%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>fll_model = flash_pipeline(fl_model$ldf$l)
+saveRDS(fll_model, &#39;output/GTExV6/flash_loading_model.rds&#39;)</code></pre>
+<pre class="r"><code>U.pca = cov_pca(data.strong, 5)</code></pre>
+<pre class="r"><code>U.ed = cov_ed(data.strong, c(U.f, U.pca))</code></pre>
+<pre class="r"><code>U.ed = readRDS(&#39;output/GTExV6/Ued.rds&#39;)</code></pre>
+<pre class="r"><code>U.c = cov_canonical(data.random)</code></pre>
+<pre class="r"><code>data.strong = mash_set_data(Bhat = gtex$strong.b, Shat = gtex$strong.s)</code></pre>
+<pre class="r"><code>m.ignore = mash(data.random, c(U.c, U.ed), outputlevel = 1)
+m.ignore$result = mash_compute_posterior_matrices(m.ignore, data.strong)</code></pre>
+<pre class="r"><code>V.simple = estimate_null_correlation_simple(data.random)</code></pre>
+<pre class="r"><code>data.random.V.simple = mash_update_data(data.random, V = V.simple)
+m.simple = mash(data.random.V.simple, c(U.c, U.ed), outputlevel = 1)
+data.strong.V.simple = mash_update_data(data.strong, V = V.simple)
+m.simple$result = mash_compute_posterior_matrices(m.simple, data.strong.V.simple)</code></pre>
+<pre class="r"><code>set.seed(1)
+random.subset = sample(1:nrow(gtex$random.b),5000)
+data.random.s = mash_set_data(gtex$random.b[random.subset,], gtex$random.s[random.subset,])
+current = estimate_null_correlation(data.random.s, c(U.c, U.ed), max_iter = 6)
+V.current = current$V
+data.random.V.current = mash_update_data(data.random, V = V.current)
+m.current = mash(data.random.V.current, c(U.c, U.ed), outputlevel = 1)
+data.strong = mash_update_data(data.strong, V = V.current)
+m.current$result = mash_compute_posterior_matrices(m.current, data.strong)</code></pre>
+<pre class="r"><code>V = get(load(&#39;~/Documents/GitHub/GTEx/data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda&#39;))
+# select tissue
+tissue_labels &lt;- read.table(file = &quot;~/Documents/GitHub/GTEx/data/samples_id.txt&quot;)[,3]
+U &lt;- unique(tissue_labels)
+tissues = c(1:6, 9:18, 21:23,26:30,32:33,35:36,38:53)
+V = V[tissues,tissues,]
+
+V.strong = V
+for(i in 1:nrow(gtex$strong.b)){
+  V.strong[,,i] = as.matrix(Matrix::nearPD(V[,,i], conv.tol=1.e-05, corr = TRUE, maxit = 200, doSym = TRUE)$mat)
+}
+saveRDS(V.strong, &#39;output/GTExV6/V_strong_genewide.rds&#39;)
+
+# select genes
+gene_names &lt;- as.character(read.table(file = &quot;~/Documents/GitHub/GTEx/data/gene_names_GTEX_V6.txt&quot;)[,1])
+gene_names_1 &lt;- as.character(sapply(gene_names, function(x) return(strsplit(x, &quot;[.]&quot;)[[1]][1])))
+
+data.random.names = rownames(data.random$Bhat)
+data.random.names.1 = as.character(sapply(data.random.names, function(x) return(strsplit(x, &quot;[.]&quot;)[[1]][1])))
+
+V.random = array(NA, dim = c(44,44,nrow(gtex$random.b)))
+for(i in 1:nrow(gtex$random.b)){
+  numg &lt;- grep(data.random.names.1[i], gene_names_1)
+  V.random[,,i] = as.matrix(Matrix::nearPD(V[,,numg], conv.tol=1.e-05, corr = TRUE, doSym = TRUE)$mat)
+}
+saveRDS(V.random, &#39;output/GTExV6/V_random_genewide.rds&#39;)
+
+data.random.V3 = mash_update_data(data.random, V = V.random)
+m.V3 = mash(data.random.V3, c(U.c, U.ed), outputlevel = 1, algorithm.version = &#39;R&#39;)
+data.strong.V3 = mash_update_data(data.strong, V = V.strong)
+m.V3$result = mash_compute_posterior_matrices(m.V3, data.strong.V3, algorithm.version = &#39;R&#39;)</code></pre>
+<pre class="r"><code># read model
+m_ignore = readRDS(&#39;output/GTExV6/m_ignore_post.rds&#39;)
+m_ignore_EZ = readRDS(&#39;output/GTExV6/m_ignore_EZ_post.rds&#39;)
+m_simple = readRDS(&#39;output/GTExV6/m_simple_post.rds&#39;)
+m_simple_EZ = readRDS(&#39;output/GTExV6/m_simple_EZ_post.rds&#39;)
+m_current = readRDS(&#39;output/GTExV6/m_current_post.rds&#39;)
+m_current_EZ = readRDS(&#39;output/GTExV6/m_current_EZ_post.rds&#39;)
+m_V3 = readRDS(&#39;output/GTExV6/m_V3_genewide_post.rds&#39;)
+m_V3_EZ = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)</code></pre>
+<pre class="r"><code>par(mfrow = c(1,2))
+# pdf(&#39;../output/GTExV6/Figures/SimpleV.pdf&#39;)
+corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(V.simple, method = &quot;color&quot;, type = &quot;upper&quot;, :
+Not been able to calculate text margin, please try again with a clean new
+empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<pre class="r"><code># dev.off()
+
+V.current = readRDS(&#39;output/GTExV6/currentV_EZ.rds&#39;)
+V.current = V.current$V
+# pdf(&#39;../output/GTExV6/Figures/CurrentEZV.pdf&#39;)
+corrplot::corrplot(V.current, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(V.current, method = &quot;color&quot;, type =
+&quot;upper&quot;, : Not been able to calculate text margin, please try again with a
+clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<p><img src="figure/GTExV6.Rmd/V-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># dev.off()</code></pre>
+<pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3))
+logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ))
+tmp = cbind(logliks, logliks_EZ)
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;)
+colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
+tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EE
+</th>
+<th style="text-align:right;">
+EZ
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Ignore
+</td>
+<td style="text-align:right;">
+929188.2
+</td>
+<td style="text-align:right;">
+935288.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Simple
+</td>
+<td style="text-align:right;">
+933359.2
+</td>
+<td style="text-align:right;">
+936783.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Current
+</td>
+<td style="text-align:right;">
+937323.7
+</td>
+<td style="text-align:right;">
+939685.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V3
+</td>
+<td style="text-align:right;">
+860927.1
+</td>
+<td style="text-align:right;">
+897029.6
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>barplot(get_estimated_pi(m_ignore), las=2, cex.names = 0.7, main = &#39;Ignore EE&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_simple), las=2, cex.names = 0.7, main = &#39;Simple EE&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_current), las=2, cex.names = 0.7, main = &#39;Current EE&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_V3), las=2, cex.names = 0.7, main = &#39;V3 EE&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_ignore_EZ), las=2, cex.names = 0.7, main = &#39;Ignore EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-6.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_current_EZ), las=2, cex.names = 0.7, main = &#39;Current EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-7.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_V3_EZ), las=2, cex.names = 0.7, main = &#39;V3 EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Number of significant:</p>
+<pre class="r"><code>numsig_EE = c(length(get_significant_results(m_ignore)), 
+              length(get_significant_results(m_simple)), 
+              length(get_significant_results(m_current)), 
+              length(get_significant_results(m_V3)))
+numsig_EZ = c(length(get_significant_results(m_ignore_EZ)), 
+              length(get_significant_results(m_simple_EZ)), 
+              length(get_significant_results(m_current_EZ)), 
+              length(get_significant_results(m_V3_EZ)))
+tmp = cbind(numsig_EE, numsig_EZ)
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;)
+colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
+tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EE
+</th>
+<th style="text-align:right;">
+EZ
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Ignore
+</td>
+<td style="text-align:right;">
+14017
+</td>
+<td style="text-align:right;">
+14221
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Simple
+</td>
+<td style="text-align:right;">
+13037
+</td>
+<td style="text-align:right;">
+13485
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Current
+</td>
+<td style="text-align:right;">
+12803
+</td>
+<td style="text-align:right;">
+13006
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V3
+</td>
+<td style="text-align:right;">
+16054
+</td>
+<td style="text-align:right;">
+16069
+</td>
+</tr>
+</tbody>
+</table>
+<p>The V3 model has more significant findings, which includes all significant findings in the other three models.</p>
+<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ)))</code></pre>
+<pre><code>[1] 13006</code></pre>
+<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_simple_EZ)))</code></pre>
+<pre><code>[1] 13485</code></pre>
+<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_ignore_EZ)))</code></pre>
+<pre><code>[1] 14221</code></pre>
+<p>The gene significant in <code>simple EZ</code>, not in <code>current EZ</code>:</p>
+<pre class="r"><code>par(mfrow=c(2,2))
+stronggene = data.frame(gtex$strong.b[5034,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[5034,]
+ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000135315&#39;) + ylim(c(-0.7,1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[5034,])
+colnames(stronggeneSimple) = &#39;EffectSize&#39;
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[5034,]
+ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000135315 Simple&#39;) + ylim(c(-0.7,1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[5034,])
+colnames(stronggeneCurrent) = &#39;EffectSize&#39;
+stronggeneCurrent$Group = row.names(stronggeneCurrent)
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[5034,]
+ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.7,1)) + coord_flip() + ggtitle(&#39;ENSG00000135315 Current&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[5034,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ$result$PosteriorSD[5034,]
+ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.7,1)) + coord_flip() + ggtitle(&#39;ENSG00000135315 V3&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The gene <code>MCPH1</code>:</p>
+<pre class="r"><code>par(mfrow=c(1,3))
+stronggene = data.frame(gtex$strong.b[13837,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[13837,]
+ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneCurrent) = &#39;EffectSize&#39;
+stronggeneCurrent$Group = row.names(stronggeneCurrent)
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[13837,]
+ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ$result$PosteriorSD[13837,]
+ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The gene significant in <code>V3 EZ</code>, not in <code>current EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1]
+par(mfrow=c(1,3))
+
+stronggene = data.frame(gtex$strong.b[ind,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[ind,]
+ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000126243&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneCurrent) = &#39;EffectSize&#39;
+stronggeneCurrent$Group = row.names(stronggeneCurrent)
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
+ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000126243 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ$result$PosteriorSD[ind,]
+ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000126243 V3&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The pairwise sharing by magnitude</p>
+<pre class="r"><code>par(mfrow = c(1,2))
+x           &lt;- get_pairwise_sharing(m_ignore_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_ignore_EZ))
+rownames(x) &lt;- colnames(x)
+clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
+
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Ignore EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(x, method = &quot;color&quot;, type = &quot;upper&quot;, tl.col =
+&quot;black&quot;, : Not been able to calculate text margin, please try again with a
+clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_simple_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_simple_EZ))
+rownames(x) &lt;- colnames(x)
+
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Simple EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(x, method = &quot;color&quot;, type = &quot;upper&quot;, tl.col =
+&quot;black&quot;, : Not been able to calculate text margin, please try again with a
+clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>par(mfrow=c(1,2))
+x           &lt;- get_pairwise_sharing(m_current_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_current_EZ))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(x, method = &quot;color&quot;, type = &quot;upper&quot;, tl.col =
+&quot;black&quot;, : Not been able to calculate text margin, please try again with a
+clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_V3_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<pre><code>Warning in corrplot::corrplot(x, method = &quot;color&quot;, type = &quot;upper&quot;, tl.col =
+&quot;black&quot;, : Not been able to calculate text margin, please try again with a
+clean new empty window using {plot.new(); dev.off()} or reduce tl.cex</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.5.1 (2018-07-02)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS  10.14.2
+
+Matrix products: default
+BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ggplot2_3.1.0     kableExtra_0.9.0  knitr_1.20        mclust_5.4.1     
+[5] mashr_0.2.19.0555 ashr_2.2-26       mixsqp_0.1-93     flashr_0.6-3     
+
+loaded via a namespace (and not attached):
+ [1] softImpute_1.4    tidyselect_0.2.5  corrplot_0.84    
+ [4] purrr_0.2.5       reshape2_1.4.3    lattice_0.20-35  
+ [7] colorspace_1.3-2  viridisLite_0.3.0 htmltools_0.3.6  
+[10] yaml_2.2.0        rlang_0.3.0.1     R.oo_1.22.0      
+[13] pillar_1.3.1      withr_2.1.2       glue_1.3.0       
+[16] R.utils_2.7.0     bindrcpp_0.2.2    foreach_1.4.4    
+[19] plyr_1.8.4        bindr_0.1.1       stringr_1.3.1    
+[22] munsell_0.5.0     gtable_0.2.0      workflowr_1.1.1  
+[25] rvest_0.3.2       R.methodsS3_1.7.1 mvtnorm_1.0-8    
+[28] codetools_0.2-15  evaluate_0.12     labeling_0.3     
+[31] pscl_1.5.2        doParallel_1.0.14 parallel_3.5.1   
+[34] highr_0.7         Rcpp_1.0.0        readr_1.1.1      
+[37] scales_1.0.0      backports_1.1.2   rmeta_3.0        
+[40] truncnorm_1.0-8   abind_1.4-5       hms_0.4.2        
+[43] digest_0.6.18     stringi_1.2.4     dplyr_0.7.6      
+[46] grid_3.5.1        rprojroot_1.3-2   tools_3.5.1      
+[49] magrittr_1.5      lazyeval_0.2.1    tibble_1.4.2     
+[52] crayon_1.3.4      whisker_0.3-2     pkgconfig_2.0.2  
+[55] MASS_7.3-50       Matrix_1.2-14     xml2_1.2.0       
+[58] SQUAREM_2017.10-1 httr_1.3.1        rstudioapi_0.8   
+[61] assertthat_0.2.0  rmarkdown_1.10    iterators_1.0.10 
+[64] R6_2.3.0          git2r_0.23.0      compiler_3.5.1   </code></pre>
+</div>
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<hr>
+<p>
+  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
+  analysis was created with
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
+</p>
+<hr>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
