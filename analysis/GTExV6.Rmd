@@ -344,7 +344,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
 The gene significant in `V3 EZ`, not in `current EZ`:
-```{r fig.align='center', fig.height=8,fig.width=20}
+```{r fig.align='center', fig.height=10,fig.width=20}
 ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1]
 
 stronggene = data.frame(gtex$strong.b[ind,])
@@ -377,7 +377,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 
 
 The pairwise sharing by magnitude
-```{r fig.align='center',fig.height=10,fig.width=20}
+```{r fig.align='center',fig.height=12,fig.width=20}
 par(mfrow = c(1,2))
 x           <- get_pairwise_sharing(m_ignore_EZ)
 colnames(x) <- colnames(get_lfsr(m_ignore_EZ))
@@ -393,7 +393,7 @@ rownames(x) <- colnames(x)
 corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Simple EZ', mar=c(0,0,5,0))
 ```
 
-```{r fig.align='center',fig.height=10,fig.width=20}
+```{r fig.align='center',fig.height=12,fig.width=20}
 par(mfrow=c(1,2))
 x           <- get_pairwise_sharing(m_current_EZ)
 colnames(x) <- colnames(get_lfsr(m_current_EZ))
