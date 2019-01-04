@@ -341,7 +341,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-01</p>
+<p><strong>Last updated:</strong> 2019-01-03</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -365,7 +365,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/3debd8d6887a5ae2495581a1368573f302cd7a21" target="_blank">3debd8d</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/db5756d87610f7701233b478965a565420d67867" target="_blank">db5756d</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -416,6 +416,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/db5756d87610f7701233b478965a565420d67867/analysis/GTExV6.Rmd" target="_blank">db5756d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-03
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/8103f2df73083319319b1fa85d3c6c4f296b1c1d/docs/GTExV6.html" target="_blank">8103f2d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -855,7 +889,8 @@ m_simple_EZ = readRDS(&#39;output/GTExV6/m_simple_EZ_post.rds&#39;)
 m_current = readRDS(&#39;output/GTExV6/m_current_post.rds&#39;)
 m_current_EZ = readRDS(&#39;output/GTExV6/m_current_EZ_post.rds&#39;)
 m_V3 = readRDS(&#39;output/GTExV6/m_V3_genewide_post.rds&#39;)
-m_V3_EZ = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)</code></pre>
+m_V3_EZ = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)
+m_V3_EZ_Current = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_Current_post.rds&#39;)</code></pre>
 <pre class="r"><code># pdf(&#39;../output/GTExV6/Figures/SimpleV.pdf&#39;)
 corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6.Rmd/V-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -941,7 +976,8 @@ zouyuxin
 <pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3))
 logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ))
 tmp = cbind(logliks, logliks_EZ)
-row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;)
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current)))
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;, &#39;V3 Current&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1000,6 +1036,17 @@ V3
 </td>
 <td style="text-align:right;">
 897029.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V3 Current
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+898310.2
 </td>
 </tr>
 </tbody>
@@ -1225,6 +1272,38 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_V3_EZ_Current), las=2, cex.names = 0.7, main = &#39;V3 Current EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20weights-5.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-5.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-5.png" target="_blank">a4437cb</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_ignore)), 
               length(get_significant_results(m_simple)), 
@@ -1235,7 +1314,8 @@ numsig_EZ = c(length(get_significant_results(m_ignore_EZ)),
               length(get_significant_results(m_current_EZ)), 
               length(get_significant_results(m_V3_EZ)))
 tmp = cbind(numsig_EE, numsig_EZ)
-row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;)
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current))))
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3&#39;, &#39;V3 Current&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1296,6 +1376,17 @@ V3
 16069
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+V3 Current
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16069
+</td>
+</tr>
 </tbody>
 </table>
 <p>The V3 model has more significant findings, which includes all significant findings in the other three models.</p>
@@ -1338,6 +1429,15 @@ stronggeneV3$Group = row.names(stronggeneV3)
 stronggeneV3$se = m_V3_EZ$result$PosteriorSD[5034,]
 p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
   geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.7,1)) + coord_flip() + ggtitle(&#39;ENSG00000135315 V3&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[5034,])
+colnames(stronggeneV3Current) = &#39;EffectSize&#39;
+stronggeneV3Current$Group = row.names(stronggeneV3Current)
+stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[5034,]
+p5 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.7,1)) + coord_flip() + ggtitle(&#39;ENSG00000135315 V3 Current&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
@@ -1409,8 +1509,17 @@ p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
-grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-1.png" width="1920" style="display: block; margin: auto;" /></p>
+
+stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[13837,])
+colnames(stronggeneV3Current) = &#39;EffectSize&#39;
+stronggeneV3Current$Group = row.names(stronggeneV3Current)
+stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[13837,]
+p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3 Current&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-16-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
@@ -1427,6 +1536,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/8103f2df73083319319b1fa85d3c6c4f296b1c1d/docs/figure/GTExV6.Rmd/unnamed-chunk-16-1.png" target="_blank">8103f2d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/5306c8f76093dc136121d237eec1dfd5693cec79/docs/figure/GTExV6.Rmd/unnamed-chunk-16-1.png" target="_blank">5306c8f</a>
@@ -1453,14 +1573,14 @@ zouyuxin
 </table>
 <p></details></p>
 <p>The gene significant in <code>V3 EZ</code>, not in <code>current EZ</code>:</p>
-<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1]
+<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1000]
 
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = &#39;EffectSize&#39;
 stronggene$Group = row.names(stronggene)
 stronggene$se = gtex$strong.s[ind,]
 p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000126243&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000183814&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
@@ -1468,7 +1588,7 @@ colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
 stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
 p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000126243 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000183814 Current&#39;) + ylim(c(-1.3,1.1)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -1477,11 +1597,21 @@ colnames(stronggeneV3) = &#39;EffectSize&#39;
 stronggeneV3$Group = row.names(stronggeneV3)
 stronggeneV3$se = m_V3_EZ$result$PosteriorSD[ind,]
 p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000126243 V3&#39;) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000183814 V3&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
-grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="1920" style="display: block; margin: auto;" /></p>
+
+stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[ind,])
+colnames(stronggeneV3Current) = &#39;EffectSize&#39;
+stronggeneV3Current$Group = row.names(stronggeneV3Current)
+stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000183814 V3 Current&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-17-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
@@ -1567,6 +1697,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/8103f2df73083319319b1fa85d3c6c4f296b1c1d/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">8103f2d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/68fcfdde955f75795ea6bcefeba745f625c4ce29/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">68fcfdd</a>
 </td>
 <td style="text-align:left;">
@@ -1630,6 +1771,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/8103f2df73083319319b1fa85d3c6c4f296b1c1d/docs/figure/GTExV6.Rmd/unnamed-chunk-19-1.png" target="_blank">8103f2d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/68fcfdde955f75795ea6bcefeba745f625c4ce29/docs/figure/GTExV6.Rmd/unnamed-chunk-19-1.png" target="_blank">68fcfdd</a>
 </td>
 <td style="text-align:left;">
@@ -1664,6 +1816,11 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_V3_EZ_Current)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_Current))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-20-1.png" width="1440" style="display: block; margin: auto;" /></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
