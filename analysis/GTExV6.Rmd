@@ -143,6 +143,7 @@ U.c = cov_canonical(data.random)
 data.strong = mash_set_data(Bhat = gtex$strong.b, Shat = gtex$strong.s)
 ```
 
+## Mash model
 ```{r eval=FALSE}
 m.ignore = mash(data.random, c(U.c, U.ed), outputlevel = 1)
 m.ignore$result = mash_compute_posterior_matrices(m.ignore, data.strong)
@@ -218,6 +219,8 @@ m_V3_EZ = readRDS('output/GTExV6/m_V3_genewide_EZ_post.rds')
 m_V3_EZ_Current = readRDS('output/GTExV6/m_V3_genewide_EZ_Current_post.rds')
 ```
 
+## Estimated null cor V
+
 ```{r V, fig.align='center', fig.height=8,fig.width=8}
 # pdf('../output/GTExV6/Figures/SimpleV.pdf')
 corrplot::corrplot(V.simple, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'Simple', mar=c(0,0,5,0))
@@ -229,6 +232,8 @@ V.current = V.current$V
 corrplot::corrplot(V.current, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'Current EZ', mar=c(0,0,5,0))
 # dev.off()
 ```
+
+## Results
 
 ```{r loglikelihood}
 logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3))
