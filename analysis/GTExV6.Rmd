@@ -367,14 +367,14 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 The gene significant in `V3 EZ`, not in `current EZ`:
 ```{r fig.align='center', fig.height=15,fig.width=15}
-ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[1000]
+ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[10]
 
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
 stronggene$se = gtex$strong.s[ind,]
 p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000183814') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000154589') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
@@ -382,7 +382,7 @@ colnames(stronggeneCurrent) = 'EffectSize'
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
 stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
 p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000183814 Current') + ylim(c(-1.3,1.1)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000154589 Current') + ylim(c(-1.3,1.1)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -391,7 +391,7 @@ colnames(stronggeneV3) = 'EffectSize'
 stronggeneV3$Group = row.names(stronggeneV3)
 stronggeneV3$se = m_V3_EZ$result$PosteriorSD[ind,]
 p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000183814 V3') + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000154589 V3') + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -400,7 +400,7 @@ colnames(stronggeneV3Current) = 'EffectSize'
 stronggeneV3Current$Group = row.names(stronggeneV3Current)
 stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[ind,]
 p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000183814 V3 Current') + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000154589 V3 Current') + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
