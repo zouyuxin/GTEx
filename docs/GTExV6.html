@@ -341,7 +341,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-04</p>
+<p><strong>Last updated:</strong> 2019-01-05</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -365,7 +365,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/f39d7069d9c8c2155076ca9bdaf4648fc6a2a738" target="_blank">f39d706</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/edcc92990104032e950c6711a36359b051bf48b3" target="_blank">edcc929</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -416,6 +416,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/edcc92990104032e950c6711a36359b051bf48b3/analysis/GTExV6.Rmd" target="_blank">edcc929</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-05
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/7e2364ee21f227345cb674d90826a56267caadc6/docs/GTExV6.html" target="_blank">7e2364e</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-04
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -868,6 +902,9 @@ saveRDS(fll_model, &#39;output/GTExV6/flash_loading_model.rds&#39;)</code></pre>
 <pre class="r"><code>U.ed = readRDS(&#39;output/GTExV6/Ued.rds&#39;)</code></pre>
 <pre class="r"><code>U.c = cov_canonical(data.random)</code></pre>
 <pre class="r"><code>data.strong = mash_set_data(Bhat = gtex$strong.b, Shat = gtex$strong.s)</code></pre>
+</div>
+<div id="mash-model" class="section level2">
+<h2>Mash model</h2>
 <pre class="r"><code>m.ignore = mash(data.random, c(U.c, U.ed), outputlevel = 1)
 m.ignore$result = mash_compute_posterior_matrices(m.ignore, data.strong)</code></pre>
 <pre class="r"><code>V.simple = estimate_null_correlation_simple(data.random)</code></pre>
@@ -925,6 +962,9 @@ m_current_EZ = readRDS(&#39;output/GTExV6/m_current_EZ_post.rds&#39;)
 m_V3 = readRDS(&#39;output/GTExV6/m_V3_genewide_post.rds&#39;)
 m_V3_EZ = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)
 m_V3_EZ_Current = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_Current_post.rds&#39;)</code></pre>
+</div>
+<div id="estimated-null-cor-v" class="section level2">
+<h2>Estimated null cor V</h2>
 <pre class="r"><code># pdf(&#39;../output/GTExV6/Figures/SimpleV.pdf&#39;)
 corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6.Rmd/V-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -1007,6 +1047,9 @@ zouyuxin
 </table>
 <p></details></p>
 <pre class="r"><code># dev.off()</code></pre>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
 <pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3))
 logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ))
 tmp = cbind(logliks, logliks_EZ)
@@ -1684,6 +1727,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/7e2364ee21f227345cb674d90826a56267caadc6/docs/figure/GTExV6.Rmd/unnamed-chunk-17-1.png" target="_blank">7e2364e</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-04
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/6f7677b2e3fce2e7963bd97344f09038385f645e/docs/figure/GTExV6.Rmd/unnamed-chunk-17-1.png" target="_blank">6f7677b</a>
