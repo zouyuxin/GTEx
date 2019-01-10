@@ -276,12 +276,7 @@ colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
 
-The V3 model has more significant findings, which includes all significant findings in the other three models.
-```{r}
-length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ)))
-length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_simple_EZ)))
-length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_ignore_EZ)))
-```
+The V3 model has all genes significant!
 
 The gene significant in `simple EZ`, not in `current EZ`:
 ```{r fig.align='center', fig.width=15, fig.height=15}
