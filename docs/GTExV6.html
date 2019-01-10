@@ -341,7 +341,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-05</p>
+<p><strong>Last updated:</strong> 2019-01-10</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -365,7 +365,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/edcc92990104032e950c6711a36359b051bf48b3" target="_blank">edcc929</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/44fe8543251bdbca848aec45b26998cf9f8f77e6" target="_blank">44fe854</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -416,6 +416,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/44fe8543251bdbca848aec45b26998cf9f8f77e6/analysis/GTExV6.Rmd" target="_blank">44fe854</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-10
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/fd41fccf0c5b46c4b80ae5b51d304fa8792f2c01/docs/GTExV6.html" target="_blank">fd41fcc</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-05
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -1477,13 +1511,7 @@ NA
 </tr>
 </tbody>
 </table>
-<p>The V3 model has more significant findings, which includes all significant findings in the other three models.</p>
-<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ)))</code></pre>
-<pre><code>[1] 13006</code></pre>
-<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_simple_EZ)))</code></pre>
-<pre><code>[1] 13485</code></pre>
-<pre class="r"><code>length(intersect(get_significant_results(m_V3_EZ), get_significant_results(m_ignore_EZ)))</code></pre>
-<pre><code>[1] 14221</code></pre>
+<p>The V3 model has all genes significant!</p>
 <p>The gene significant in <code>simple EZ</code>, not in <code>current EZ</code>:</p>
 <pre class="r"><code>stronggene = data.frame(gtex$strong.b[5034,])
 colnames(stronggene) = &#39;EffectSize&#39;
@@ -1529,6 +1557,43 @@ p5 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-14-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<p>The gene <code>MCPH1</code>:</p>
+<pre class="r"><code>stronggene = data.frame(gtex$strong.b[13837,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[13837,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneCurrent) = &#39;EffectSize&#39;
+stronggeneCurrent$Group = row.names(stronggeneCurrent)
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[13837,]
+p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ$result$PosteriorSD[13837,]
+p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[13837,])
+colnames(stronggeneV3Current) = &#39;EffectSize&#39;
+stronggeneV3Current$Group = row.names(stronggeneV3Current)
+stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[13837,]
+p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3 Current&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-15-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-15-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1571,41 +1636,44 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<p>The gene <code>MCPH1</code>:</p>
-<pre class="r"><code>stronggene = data.frame(gtex$strong.b[13837,])
+<p>The gene significant in <code>V3 EZ</code>, not in <code>current EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[10]
+
+stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = &#39;EffectSize&#39;
 stronggene$Group = row.names(stronggene)
-stronggene$se = gtex$strong.s[13837,]
+stronggene$se = gtex$strong.s[ind,]
 p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000154589&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[13837,])
+stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
 colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
-stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[13837,]
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
 p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000154589 Current&#39;) + ylim(c(-1.3,1.1)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[13837,])
+stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[ind,])
 colnames(stronggeneV3) = &#39;EffectSize&#39;
 stronggeneV3$Group = row.names(stronggeneV3)
-stronggeneV3$se = m_V3_EZ$result$PosteriorSD[13837,]
+stronggeneV3$se = m_V3_EZ$result$PosteriorSD[ind,]
 p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3&#39;) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000154589 V3&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[13837,])
+stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[ind,])
 colnames(stronggeneV3Current) = &#39;EffectSize&#39;
 stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[13837,]
+stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[ind,]
 p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3 Current&#39;) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000154589 V3 Current&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
 grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-16-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-16-1.png:</em></summary>
@@ -1671,46 +1739,21 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<p>The gene significant in <code>V3 EZ</code>, not in <code>current EZ</code>:</p>
-<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ), get_significant_results(m_current_EZ))[10]
+<p>The pairwise sharing by magnitude</p>
+<pre class="r"><code>par(mfrow = c(1,2))
+x           &lt;- get_pairwise_sharing(m_ignore_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_ignore_EZ))
+rownames(x) &lt;- colnames(x)
+clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
 
-stronggene = data.frame(gtex$strong.b[ind,])
-colnames(stronggene) = &#39;EffectSize&#39;
-stronggene$Group = row.names(stronggene)
-stronggene$se = gtex$strong.s[ind,]
-p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000154589&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
-  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Ignore EZ&#39;, mar=c(0,0,5,0))
 
-stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[ind,])
-colnames(stronggeneCurrent) = &#39;EffectSize&#39;
-stronggeneCurrent$Group = row.names(stronggeneCurrent)
-stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
-p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000154589 Current&#39;) + ylim(c(-1.3,1.1)) + 
-  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
-  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+x           &lt;- get_pairwise_sharing(m_simple_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_simple_EZ))
+rownames(x) &lt;- colnames(x)
 
-stronggeneV3 = data.frame(m_V3_EZ$result$PosteriorMean[ind,])
-colnames(stronggeneV3) = &#39;EffectSize&#39;
-stronggeneV3$Group = row.names(stronggeneV3)
-stronggeneV3$se = m_V3_EZ$result$PosteriorSD[ind,]
-p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000154589 V3&#39;) + 
-  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
-  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
-
-stronggeneV3Current = data.frame(m_V3_EZ_Current$result$PosteriorMean[ind,])
-colnames(stronggeneV3Current) = &#39;EffectSize&#39;
-stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current$result$PosteriorSD[ind,]
-p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000154589 V3 Current&#39;) + 
-  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
-  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
-
-grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="1440" style="display: block; margin: auto;" /></p>
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Simple EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="2880" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-17-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
@@ -1785,20 +1828,16 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<p>The pairwise sharing by magnitude</p>
-<pre class="r"><code>par(mfrow = c(1,2))
-x           &lt;- get_pairwise_sharing(m_ignore_EZ)
-colnames(x) &lt;- colnames(get_lfsr(m_ignore_EZ))
+<pre class="r"><code>par(mfrow=c(1,2))
+x           &lt;- get_pairwise_sharing(m_current_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_current_EZ))
 rownames(x) &lt;- colnames(x)
-clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))
 
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Ignore EZ&#39;, mar=c(0,0,5,0))
-
-x           &lt;- get_pairwise_sharing(m_simple_EZ)
-colnames(x) &lt;- colnames(get_lfsr(m_simple_EZ))
+x           &lt;- get_pairwise_sharing(m_V3_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ))
 rownames(x) &lt;- colnames(x)
-
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Simple EZ&#39;, mar=c(0,0,5,0))</code></pre>
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-18-1.png" width="2880" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-18-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1863,17 +1902,11 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>par(mfrow=c(1,2))
-x           &lt;- get_pairwise_sharing(m_current_EZ)
-colnames(x) &lt;- colnames(get_lfsr(m_current_EZ))
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_V3_EZ_Current)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_Current))
 rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))
-
-x           &lt;- get_pairwise_sharing(m_V3_EZ)
-colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ))
-rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ&#39;, mar=c(0,0,5,0))</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-19-1.png" width="2880" style="display: block; margin: auto;" /></p>
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-19-1.png" width="1440" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-19-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
@@ -1932,41 +1965,6 @@ zouyuxin
 </td>
 <td style="text-align:left;">
 2019-01-01
-</td>
-</tr>
-</tbody>
-</table>
-<p></details></p>
-<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_V3_EZ_Current)
-colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_Current))
-rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current&#39;, mar=c(0,0,5,0))</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-20-1.png" width="1440" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-20-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/6f7677b2e3fce2e7963bd97344f09038385f645e/docs/figure/GTExV6.Rmd/unnamed-chunk-20-1.png" target="_blank">6f7677b</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-03
 </td>
 </tr>
 </tbody>
