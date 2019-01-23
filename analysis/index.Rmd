@@ -7,3 +7,5 @@ output:
 ---
 
 * [GTEx V6](GTExV6.html)
+
+* [CorShrink eQTL](CorShrinkEQTL.html)
