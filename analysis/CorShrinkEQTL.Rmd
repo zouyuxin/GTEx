@@ -40,7 +40,7 @@ numg <- grep(name, gene_names)
 numg = 8265
 ```
 
-```{r fig.align='center',fig.width=20}
+```{r fig.align='center',fig.width=20, fig.height=10}
 stronggene = data.frame(gtex$strong.b[numg,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
