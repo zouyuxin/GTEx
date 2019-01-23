@@ -1,0 +1,88 @@
+---
+title: "CorShrink"
+author: "Yuxin Zou"
+date: "1/23/2019"
+output:
+  workflowr::wflow_html:
+      code_folding: hide
+---
+
+```{r packages}
+library(mashr)
+library(corrplot)
+library(ggplot2)
+library(gridExtra)
+```
+
+
+```{r}
+gtex <- readRDS(gzcon(url("https://github.com/stephenslab/gtexresults/blob/master/data/MatrixEQTLSumStats.Portable.Z.rds?raw=TRUE")))
+V.kushal.tissuewide = readRDS('output/GTExV6/V_strong_tissuewide.rds')
+
+V.null.tissuewide = readRDS('output/GTExV6/V_corshrink_array.rds')
+
+m_current_EZ = readRDS('output/GTExV6/m_current_EZ_post.rds')
+m_V3_EZ_Current_tissuewide = readRDS('output/GTExV6/m_V3_tissuewide_EZ_Current.rds')
+m_V3_EZ_Current_tissuewide$result = readRDS('output/GTExV6/m_V3_tissuewide_EZ_Current_post_weights.rds')$posterior_matrices
+
+missing.tissues <- c(7, 8, 19, 20, 24, 25, 31, 34, 37)
+gtex.colors <- read.table("https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE", sep = '\t', comment.char = '')[-missing.tissues, 2]
+gtex.colors <- as.character(gtex.colors)
+```
+
+
+```{r}
+sign = get_significant_results(m_current_EZ)
+gene_names = dimnames(V.null.tissuewide)[[3]]
+name = "ENSG00000107738"
+numg <- grep(name, gene_names)
+# numg = 13837
+numg = 8265
+```
+
+```{r fig.align='center',fig.width=20}
+stronggene = data.frame(gtex$strong.b[numg,])
+colnames(stronggene) = 'EffectSize'
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[numg,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('PLIN1 ENSG00000166819') + ylim(c(-0.8,1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneCurrent = data.frame(m_current_EZ$result$PosteriorMean[numg,])
+colnames(stronggeneCurrent) = 'EffectSize'
+stronggeneCurrent$Group = row.names(stronggeneCurrent)
+stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[numg,]
+p2 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.8,1)) + coord_flip() + ggtitle('ENSG00000166819 Current') + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneV3 = data.frame(m_V3_EZ_Current_tissuewide$result$PosteriorMean[numg,])
+colnames(stronggeneV3) = 'EffectSize'
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ_Current_tissuewide$result$PosteriorSD[numg,]
+p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-0.8,1)) + coord_flip() + ggtitle('ENSG00000166819 V3 Current tissuewide') + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+
+grid.arrange(p1, p2, p3, nrow = 1)
+```
+
+```{r}
+col2 <- c("blue", "white", "red")
+
+g1 <- corrplot(V.null.tissuewide[,,numg], 
+               col = colorRampPalette(col2)(200),
+               tl.pos = "td", tl.cex = 0.5, tl.col = "black",
+               rect.col = "white",na.label.col = "white",
+               method = "color", type = "upper") 
+
+g2 <- corrplot(V.kushal.tissuewide[,,numg], 
+               col = colorRampPalette(col2)(200),
+               tl.pos = "td", tl.cex = 0.5, tl.col = "black",
+               rect.col = "white",na.label.col = "white",
+               method = "color", type = "upper") 
+```
