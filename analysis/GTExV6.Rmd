@@ -248,11 +248,13 @@ m_simple = readRDS('output/GTExV6/m_simple_post.rds')
 m_simple_EZ = readRDS('output/GTExV6/m_simple_EZ_post.rds')
 m_current = readRDS('output/GTExV6/m_current_post.rds')
 m_current_EZ = readRDS('output/GTExV6/m_current_EZ_post.rds')
-m_V3_genewide = readRDS('output/GTExV6/m_V3_genewide_post.rds')
-m_V3_EZ_genewide = readRDS('output/GTExV6/m_V3_genewide_EZ_post.rds')
-m_V3_EZ_Current_genewide = readRDS('output/GTExV6/m_V3_genewide_EZ_Current_post.rds')
+m_V3_EZ_tissuewide = readRDS('output/GTExV6/m_V3_tissuewide_EZ.rds')
+m_V3_EZ_tissuewide$result = readRDS('output/GTExV6/m_V3_tissuewide_EZ_post_weights.rds')$posterior_matrices
 m_V3_EZ_Current_tissuewide = readRDS('output/GTExV6/m_V3_tissuewide_EZ_Current.rds')
 m_V3_EZ_Current_tissuewide$result = readRDS('output/GTExV6/m_V3_tissuewide_EZ_Current_post_weights.rds')$posterior_matrices
+
+m_V3_EZ_genewide = readRDS('output/GTExV6/m_V3_genewide_EZ_post.rds')
+m_V3_EZ_Current_genewide = readRDS('output/GTExV6/m_V3_genewide_EZ_Current_post.rds')
 ```
 
 ## Estimated null cor V
@@ -272,12 +274,14 @@ corrplot::corrplot(V.current, method='color', type='upper', tl.col="black", tl.s
 ## Results
 
 ```{r loglikelihood}
-logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3_genewide))
-logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ_genewide))
+logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current))
+logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ))
 tmp = cbind(logliks, logliks_EZ)
-tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_genewide)))
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_tissuewide)))
 tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_tissuewide)))
-row.names(tmp) = c('Ignore', 'Simple', 'Current', 'V3 genewide', 'V3 Current genewide', 'V3 Current tissuewide')
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_genewide)))
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_genewide)))
+row.names(tmp) = c('Ignore', 'Simple', 'Current', 'V3 tissuewide', 'V3 Current tissuewide', 'V3 genewide', 'V3 Current genewide')
 colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
@@ -287,31 +291,36 @@ par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_ignore), las=2, cex.names = 0.7, main = 'Ignore EE')
 barplot(get_estimated_pi(m_simple), las=2, cex.names = 0.7, main = 'Simple EE')
 barplot(get_estimated_pi(m_current), las=2, cex.names = 0.7, main = 'Current EE')
-barplot(get_estimated_pi(m_V3_genewide), las=2, cex.names = 0.7, main = 'V3 genewide EE')
 
 barplot(get_estimated_pi(m_ignore_EZ), las=2, cex.names = 0.7, main = 'Ignore EZ')
 barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = 'Simple EZ')
 barplot(get_estimated_pi(m_current_EZ), las=2, cex.names = 0.7, main = 'Current EZ')
-barplot(get_estimated_pi(m_V3_EZ_genewide), las=2, cex.names = 0.7, main = 'V3 genewide EZ')
+```
 
-barplot(get_estimated_pi(m_V3_EZ_Current_genewide), las=2, cex.names = 0.7, main = 'V3 Current genewide EZ')
-barplot(get_estimated_pi(m_V3_EZ_Current_tissuewide), las=2, cex.names = 0.7, main = 'V3 Current tissuewide EZ')
+```{r plot V3 weights, fig.align='center', fig.height=5,fig.width=20}
+par(mfrow=c(1,2))
+barplot(get_estimated_pi(m_V3_EZ_tissuewide), las=2, cex.names = 0.7, main = 'V3 tissuewide EZ')
+barplot(get_estimated_pi(m_V3_EZ_Current_tissuewide), las=2, cex.names = 0.7, main = 'V3 Current tissueide EZ')
+
+barplot(get_estimated_pi(m_V3_EZ_genewide), las=2, cex.names = 0.7, main = 'V3 genewide EZ')
+barplot(get_estimated_pi(m_V3_EZ_Current_genewide), las=2, cex.names = 0.7, main = 'V3 Current geneide EZ')
 ```
 
 Number of significant:
 ```{r}
 numsig_EE = c(length(get_significant_results(m_ignore)), 
               length(get_significant_results(m_simple)), 
-              length(get_significant_results(m_current)), 
-              length(get_significant_results(m_V3_genewide)))
+              length(get_significant_results(m_current)))
 numsig_EZ = c(length(get_significant_results(m_ignore_EZ)), 
               length(get_significant_results(m_simple_EZ)), 
-              length(get_significant_results(m_current_EZ)), 
-              length(get_significant_results(m_V3_EZ_genewide)))
+              length(get_significant_results(m_current_EZ)))
 tmp = cbind(numsig_EE, numsig_EZ)
-tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_genewide))))
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_tissuewide))))
 tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_tissuewide))))
-row.names(tmp) = c('Ignore', 'Simple', 'Current', 'V3 genewide', 'V3 Current genewide', 'V3 Current tissuewide')
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_genewide))))
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_genewide))))
+
+row.names(tmp) = c('Ignore', 'Simple', 'Current', 'V3 tissuewide', 'V3 Current tissuewide', 'V3 genewide', 'V3 Current genewide')
 colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
@@ -384,27 +393,27 @@ p3 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3Current = data.frame(m_V3_EZ_Current_tissuewide$result$PosteriorMean[13837,])
-colnames(stronggeneV3Current) = 'EffectSize'
-stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current_tissuewide$result$PosteriorSD[13837,]
-p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000249898 V3 Current tissuewide') + 
+stronggeneV3 = data.frame(m_V3_EZ_tissuewide$result$PosteriorMean[13837,])
+colnames(stronggeneV3) = 'EffectSize'
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ_tissuewide$result$PosteriorSD[13837,]
+p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000249898 V3 tissuewide') + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
-The gene significant in `V3 EZ Current tissuewide`, not in `current EZ`:
+The gene significant in `V3 EZ tissuewide`, not in `current EZ`:
 ```{r fig.align='center', fig.height=15,fig.width=15}
-ind = setdiff(get_significant_results(m_V3_EZ_Current_tissuewide), get_significant_results(m_current_EZ))[100]
+ind = setdiff(get_significant_results(m_V3_EZ_tissuewide), get_significant_results(m_current_EZ))[10]
 
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
 stronggene$se = gtex$strong.s[ind,]
 p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000092199') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000235554') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
@@ -412,7 +421,7 @@ colnames(stronggeneSimple) = 'EffectSize'
 stronggeneSimple$Group = row.names(stronggeneSimple)
 stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
 p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000092199 Simple') + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000235554 Simple') + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -421,16 +430,16 @@ colnames(stronggeneCurrent) = 'EffectSize'
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
 stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
 p3 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000092199 Current') + ylim(c(-1.3,1.1)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000235554 Current') + ylim(c(-1.3,1.1)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3Current = data.frame(m_V3_EZ_Current_tissuewide$result$PosteriorMean[ind,])
-colnames(stronggeneV3Current) = 'EffectSize'
-stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current_tissuewide$result$PosteriorSD[ind,]
-p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000092199 V3 Current tissuewide') + 
+stronggeneV3 = data.frame(m_V3_EZ_tissuewide$result$PosteriorMean[ind,])
+colnames(stronggeneV3) = 'EffectSize'
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ_tissuewide$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000235554 V3 tissuewide') + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -461,23 +470,15 @@ colnames(x) <- colnames(get_lfsr(m_current_EZ))
 rownames(x) <- colnames(x)
 corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Current EZ', mar=c(0,0,5,0))
 
+x           <- get_pairwise_sharing(m_V3_EZ_tissuewide)
+colnames(x) <- colnames(get_lfsr(m_V3_EZ_tissuewide))
+rownames(x) <- colnames(x)
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V3 EZ genewide', mar=c(0,0,5,0))
+
 x           <- get_pairwise_sharing(m_V3_EZ_genewide)
 colnames(x) <- colnames(get_lfsr(m_V3_EZ_genewide))
 rownames(x) <- colnames(x)
-corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V3 EZ genewide', mar=c(0,0,5,0))
-```
-
-```{r fig.align='center',fig.height=15,fig.width=30}
-par(mfrow=c(1,2))
-x           <- get_pairwise_sharing(m_V3_EZ_Current_genewide)
-colnames(x) <- colnames(get_lfsr(m_V3_EZ_Current_genewide))
-rownames(x) <- colnames(x)
 corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V3 EZ Current genewide', mar=c(0,0,5,0))
-
-x           <- get_pairwise_sharing(m_V3_EZ_Current_tissuewide)
-colnames(x) <- colnames(get_lfsr(m_V3_EZ_Current_tissuewide))
-rownames(x) <- colnames(x)
-corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V3 EZ Current tissuewide', mar=c(0,0,5,0))
 ```
 
 
