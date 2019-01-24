@@ -76,7 +76,7 @@ colnames(tmp) = row.names(stronggene)
 row.names(tmp) = colnames(tmp)
 g1 <- corrplot(tmp, 
                col = colorRampPalette(col2)(200),
-               tl.pos = "td", tl.cex = 0.5, tl.col = gtex.colors,
+               tl.pos = "td", tl.cex = 0.7, tl.col = gtex.colors,
                rect.col = "white",na.label.col = "white",
                method = "color", type = "upper") 
 
@@ -85,7 +85,7 @@ colnames(tmp) = row.names(stronggene)
 row.names(tmp) = colnames(tmp)
 g2 <- corrplot(tmp, 
                col = colorRampPalette(col2)(200),
-               tl.pos = "td", tl.cex = 0.5, tl.col = gtex.colors,
+               tl.pos = "td", tl.cex = 0.7, tl.col = gtex.colors,
                rect.col = "white",na.label.col = "white",
                method = "color", type = "upper") 
 ```
