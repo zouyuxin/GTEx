@@ -460,7 +460,7 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/a7a08cc3b6138218c509b64b79c398b9c39892d9" target="_blank">a7a08cc</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/a210b81f575dc6f0ca00343ff479f8a9546f5327" target="_blank">a210b81</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -508,6 +508,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/a210b81f575dc6f0ca00343ff479f8a9546f5327/analysis/CorShrinkEQTL.Rmd" target="_blank">a210b81</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-23
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/CorShrinkEQTL.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/66046822ad87f7d43e18b1b2de67639dcfa00eb5/docs/CorShrinkEQTL.html" target="_blank">6604682</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-23
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -584,9 +618,6 @@ gtex.colors &lt;- read.table(&quot;https://github.com/stephenslab/gtexresults/bl
 gtex.colors &lt;- as.character(gtex.colors)</code></pre>
 <pre class="r"><code>sign = get_significant_results(m_current_EZ)
 gene_names = dimnames(V.null.tissuewide)[[3]]
-name = &quot;ENSG00000107738&quot;
-numg &lt;- grep(name, gene_names)
-# numg = 13837
 numg = 8265</code></pre>
 <pre class="r"><code>stronggene = data.frame(gtex$strong.b[numg,])
 colnames(stronggene) = &#39;EffectSize&#39;
@@ -614,7 +645,6 @@ p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-
 grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
 <p><img src="figure/CorShrinkEQTL.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
@@ -635,6 +665,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/66046822ad87f7d43e18b1b2de67639dcfa00eb5/docs/figure/CorShrinkEQTL.Rmd/unnamed-chunk-3-1.png" target="_blank">6604682</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/b78df8e03ba46348d30704e6100384187b432644/docs/figure/CorShrinkEQTL.Rmd/unnamed-chunk-3-1.png" target="_blank">b78df8e</a>
 </td>
 <td style="text-align:left;">
@@ -647,14 +688,27 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>col2 &lt;- c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;)
+<pre class="r"><code>par(mfrow=c(1,2))
+col2 &lt;- c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;)
 
-g1 &lt;- corrplot(V.null.tissuewide[,,numg], 
+tmp = V.null.tissuewide[,,numg]
+colnames(tmp) = row.names(stronggene)
+row.names(tmp) = colnames(tmp)
+g1 &lt;- corrplot(tmp, 
                col = colorRampPalette(col2)(200),
-               tl.pos = &quot;td&quot;, tl.cex = 0.5, tl.col = &quot;black&quot;,
+               tl.pos = &quot;td&quot;, tl.cex = 0.5, tl.col = gtex.colors,
+               rect.col = &quot;white&quot;,na.label.col = &quot;white&quot;,
+               method = &quot;color&quot;, type = &quot;upper&quot;) 
+
+tmp = V.kushal.tissuewide[,,numg]
+colnames(tmp) = row.names(stronggene)
+row.names(tmp) = colnames(tmp)
+g2 &lt;- corrplot(tmp, 
+               col = colorRampPalette(col2)(200),
+               tl.pos = &quot;td&quot;, tl.cex = 0.5, tl.col = gtex.colors,
                rect.col = &quot;white&quot;,na.label.col = &quot;white&quot;,
                method = &quot;color&quot;, type = &quot;upper&quot;) </code></pre>
-<p><img src="figure/CorShrinkEQTL.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/CorShrinkEQTL.Rmd/unnamed-chunk-4-1.png" width="2880" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
@@ -674,42 +728,6 @@ Date
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/b78df8e03ba46348d30704e6100384187b432644/docs/figure/CorShrinkEQTL.Rmd/unnamed-chunk-4-1.png" target="_blank">b78df8e</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-23
-</td>
-</tr>
-</tbody>
-</table>
-<p></details></p>
-<pre class="r"><code>g2 &lt;- corrplot(V.kushal.tissuewide[,,numg], 
-               col = colorRampPalette(col2)(200),
-               tl.pos = &quot;td&quot;, tl.cex = 0.5, tl.col = &quot;black&quot;,
-               rect.col = &quot;white&quot;,na.label.col = &quot;white&quot;,
-               method = &quot;color&quot;, type = &quot;upper&quot;) </code></pre>
-<p><img src="figure/CorShrinkEQTL.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/b78df8e03ba46348d30704e6100384187b432644/docs/figure/CorShrinkEQTL.Rmd/unnamed-chunk-4-2.png" target="_blank">b78df8e</a>
 </td>
 <td style="text-align:left;">
 zouyuxin
