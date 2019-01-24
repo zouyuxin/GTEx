@@ -438,7 +438,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-22</p>
+<p><strong>Last updated:</strong> 2019-01-24</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -462,27 +462,19 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/ddb84b2a494e8428a38f3e5ad8f7a9f98a22e24d" target="_blank">ddb84b2</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/bc0e06439c376b7374a717373b93461187608249" target="_blank">bc0e064</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
     Ignored:    output/.DS_Store
 
 Untracked files:
     Untracked:  code/Demo_SumstatQuery.R
-    Untracked:  code/ED.R
-    Untracked:  code/SumstatQuery.R
-    Untracked:  code/mCurrent.R
-    Untracked:  code/mIgnore.R
-    Untracked:  code/mMLE.R
-    Untracked:  code/mSimple.R
-    Untracked:  code/mV3.R
-    Untracked:  data/MatrixEQTLSumStats.h5
     Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
-    Untracked:  data/gene_names.txt
     Untracked:  data/gene_names_GTEX_V6.txt
     Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
     Untracked:  data/order_index.rda
@@ -518,6 +510,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/bc0e06439c376b7374a717373b93461187608249/analysis/GTExV6.Rmd" target="_blank">bc0e064</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-24
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/326208b04d9f99914f044f71afe3d27a031a6740/docs/GTExV6.html" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -1160,11 +1186,13 @@ m_simple = readRDS(&#39;output/GTExV6/m_simple_post.rds&#39;)
 m_simple_EZ = readRDS(&#39;output/GTExV6/m_simple_EZ_post.rds&#39;)
 m_current = readRDS(&#39;output/GTExV6/m_current_post.rds&#39;)
 m_current_EZ = readRDS(&#39;output/GTExV6/m_current_EZ_post.rds&#39;)
-m_V3_genewide = readRDS(&#39;output/GTExV6/m_V3_genewide_post.rds&#39;)
-m_V3_EZ_genewide = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)
-m_V3_EZ_Current_genewide = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_Current_post.rds&#39;)
+m_V3_EZ_tissuewide = readRDS(&#39;output/GTExV6/m_V3_tissuewide_EZ.rds&#39;)
+m_V3_EZ_tissuewide$result = readRDS(&#39;output/GTExV6/m_V3_tissuewide_EZ_post_weights.rds&#39;)$posterior_matrices
 m_V3_EZ_Current_tissuewide = readRDS(&#39;output/GTExV6/m_V3_tissuewide_EZ_Current.rds&#39;)
-m_V3_EZ_Current_tissuewide$result = readRDS(&#39;output/GTExV6/m_V3_tissuewide_EZ_Current_post_weights.rds&#39;)$posterior_matrices</code></pre>
+m_V3_EZ_Current_tissuewide$result = readRDS(&#39;output/GTExV6/m_V3_tissuewide_EZ_Current_post_weights.rds&#39;)$posterior_matrices
+
+m_V3_EZ_genewide = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_post.rds&#39;)
+m_V3_EZ_Current_genewide = readRDS(&#39;output/GTExV6/m_V3_genewide_EZ_Current_post.rds&#39;)</code></pre>
 </div>
 <div id="estimated-null-cor-v" class="section level2">
 <h2>Estimated null cor V</h2>
@@ -1253,12 +1281,14 @@ zouyuxin
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current), get_loglik(m_V3_genewide))
-logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ), get_loglik(m_V3_EZ_genewide))
+<pre class="r"><code>logliks = c(get_loglik(m_ignore), get_loglik(m_simple), get_loglik(m_current))
+logliks_EZ = c(get_loglik(m_ignore_EZ), get_loglik(m_simple_EZ), get_loglik(m_current_EZ))
 tmp = cbind(logliks, logliks_EZ)
-tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_genewide)))
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_tissuewide)))
 tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_tissuewide)))
-row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3 genewide&#39;, &#39;V3 Current genewide&#39;, &#39;V3 Current tissuewide&#39;)
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_genewide)))
+tmp = rbind(tmp, c(NA, get_loglik(m_V3_EZ_Current_genewide)))
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3 tissuewide&#39;, &#39;V3 Current tissuewide&#39;, &#39;V3 genewide&#39;, &#39;V3 Current genewide&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1310,10 +1340,32 @@ Current
 </tr>
 <tr>
 <td style="text-align:left;">
+V3 tissuewide
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+904883.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V3 Current tissuewide
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+907334.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 V3 genewide
 </td>
 <td style="text-align:right;">
-860927.1
+NA
 </td>
 <td style="text-align:right;">
 897029.6
@@ -1328,17 +1380,6 @@ NA
 </td>
 <td style="text-align:right;">
 898310.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-V3 Current tissuewide
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-907334.3
 </td>
 </tr>
 </tbody>
@@ -1400,7 +1441,8 @@ zouyuxin
 </table>
 <p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_current), las=2, cex.names = 0.7, main = &#39;Current EE&#39;)
-barplot(get_estimated_pi(m_V3_genewide), las=2, cex.names = 0.7, main = &#39;V3 genewide EE&#39;)</code></pre>
+
+barplot(get_estimated_pi(m_ignore_EZ), las=2, cex.names = 0.7, main = &#39;Ignore EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of plot weights-2.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1418,6 +1460,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/plot weights-2.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/f78175024ab9712e8efdd08fcb50cb3a8d75c226/docs/figure/GTExV6.Rmd/plot weights-2.png" target="_blank">f781750</a>
@@ -1454,8 +1507,8 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>barplot(get_estimated_pi(m_ignore_EZ), las=2, cex.names = 0.7, main = &#39;Ignore EZ&#39;)
-barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)</code></pre>
+<pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)
+barplot(get_estimated_pi(m_current_EZ), las=2, cex.names = 0.7, main = &#39;Current EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6.Rmd/plot%20weights-3.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of plot weights-3.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1509,118 +1562,27 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>barplot(get_estimated_pi(m_current_EZ), las=2, cex.names = 0.7, main = &#39;Current EZ&#39;)
-barplot(get_estimated_pi(m_V3_EZ_genewide), las=2, cex.names = 0.7, main = &#39;V3 genewide EZ&#39;)</code></pre>
-<p><img src="figure/GTExV6.Rmd/plot%20weights-4.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-4.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/f78175024ab9712e8efdd08fcb50cb3a8d75c226/docs/figure/GTExV6.Rmd/plot weights-4.png" target="_blank">f781750</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5306c8f76093dc136121d237eec1dfd5693cec79/docs/figure/GTExV6.Rmd/plot weights-4.png" target="_blank">5306c8f</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-4.png" target="_blank">a4437cb</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-</tbody>
-</table>
-<p></details></p>
-<pre class="r"><code>barplot(get_estimated_pi(m_V3_EZ_Current_genewide), las=2, cex.names = 0.7, main = &#39;V3 Current genewide EZ&#39;)
-barplot(get_estimated_pi(m_V3_EZ_Current_tissuewide), las=2, cex.names = 0.7, main = &#39;V3 Current tissuewide EZ&#39;)</code></pre>
-<p><img src="figure/GTExV6.Rmd/plot%20weights-5.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-5.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/6f7677b2e3fce2e7963bd97344f09038385f645e/docs/figure/GTExV6.Rmd/plot weights-5.png" target="_blank">6f7677b</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-03
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/plot weights-5.png" target="_blank">a4437cb</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-</tbody>
-</table>
-<p></details></p>
+<pre class="r"><code>par(mfrow=c(1,2))
+barplot(get_estimated_pi(m_V3_EZ_tissuewide), las=2, cex.names = 0.7, main = &#39;V3 tissuewide EZ&#39;)
+barplot(get_estimated_pi(m_V3_EZ_Current_tissuewide), las=2, cex.names = 0.7, main = &#39;V3 Current tissueide EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20V3%20weights-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_V3_EZ_genewide), las=2, cex.names = 0.7, main = &#39;V3 genewide EZ&#39;)
+barplot(get_estimated_pi(m_V3_EZ_Current_genewide), las=2, cex.names = 0.7, main = &#39;V3 Current geneide EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6.Rmd/plot%20V3%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_ignore)), 
               length(get_significant_results(m_simple)), 
-              length(get_significant_results(m_current)), 
-              length(get_significant_results(m_V3_genewide)))
+              length(get_significant_results(m_current)))
 numsig_EZ = c(length(get_significant_results(m_ignore_EZ)), 
               length(get_significant_results(m_simple_EZ)), 
-              length(get_significant_results(m_current_EZ)), 
-              length(get_significant_results(m_V3_EZ_genewide)))
+              length(get_significant_results(m_current_EZ)))
 tmp = cbind(numsig_EE, numsig_EZ)
-tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_genewide))))
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_tissuewide))))
 tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_tissuewide))))
-row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3 genewide&#39;, &#39;V3 Current genewide&#39;, &#39;V3 Current tissuewide&#39;)
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_genewide))))
+tmp = rbind(tmp, c(NA, length(get_significant_results(m_V3_EZ_Current_genewide))))
+
+row.names(tmp) = c(&#39;Ignore&#39;, &#39;Simple&#39;, &#39;Current&#39;, &#39;V3 tissuewide&#39;, &#39;V3 Current tissuewide&#39;, &#39;V3 genewide&#39;, &#39;V3 Current genewide&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1672,10 +1634,32 @@ Current
 </tr>
 <tr>
 <td style="text-align:left;">
+V3 tissuewide
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16066
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V3 Current tissuewide
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16067
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 V3 genewide
 </td>
 <td style="text-align:right;">
-16054
+NA
 </td>
 <td style="text-align:right;">
 16069
@@ -1690,17 +1674,6 @@ NA
 </td>
 <td style="text-align:right;">
 16069
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-V3 Current tissuewide
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-16067
 </td>
 </tr>
 </tbody>
@@ -1743,6 +1716,36 @@ p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
 
 grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-13-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-13-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/unnamed-chunk-13-1.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The gene <code>MCPH1</code>:</p>
 <pre class="r"><code>stronggene = data.frame(gtex$strong.b[13837,])
 colnames(stronggene) = &#39;EffectSize&#39;
@@ -1770,12 +1773,12 @@ p3 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3Current = data.frame(m_V3_EZ_Current_tissuewide$result$PosteriorMean[13837,])
-colnames(stronggeneV3Current) = &#39;EffectSize&#39;
-stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current_tissuewide$result$PosteriorSD[13837,]
-p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3 Current tissuewide&#39;) + 
+stronggeneV3 = data.frame(m_V3_EZ_tissuewide$result$PosteriorMean[13837,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ_tissuewide$result$PosteriorSD[13837,]
+p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 V3 tissuewide&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 grid.arrange(p1, p2, p3, p4, nrow = 2)</code></pre>
@@ -1798,6 +1801,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/unnamed-chunk-14-1.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/a0851081c3f606d601a3d45ce41038272b6cd6f3/docs/figure/GTExV6.Rmd/unnamed-chunk-14-1.png" target="_blank">a085108</a>
 </td>
 <td style="text-align:left;">
@@ -1810,15 +1824,15 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<p>The gene significant in <code>V3 EZ Current tissuewide</code>, not in <code>current EZ</code>:</p>
-<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ_Current_tissuewide), get_significant_results(m_current_EZ))[100]
+<p>The gene significant in <code>V3 EZ tissuewide</code>, not in <code>current EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_V3_EZ_tissuewide), get_significant_results(m_current_EZ))[10]
 
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = &#39;EffectSize&#39;
 stronggene$Group = row.names(stronggene)
 stronggene$se = gtex$strong.s[ind,]
 p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000092199&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000235554&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
@@ -1826,7 +1840,7 @@ colnames(stronggeneSimple) = &#39;EffectSize&#39;
 stronggeneSimple$Group = row.names(stronggeneSimple)
 stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
 p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000092199 Simple&#39;) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000235554 Simple&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -1835,16 +1849,16 @@ colnames(stronggeneCurrent) = &#39;EffectSize&#39;
 stronggeneCurrent$Group = row.names(stronggeneCurrent)
 stronggeneCurrent$se = m_current_EZ$result$PosteriorSD[ind,]
 p3 = ggplot(stronggeneCurrent, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000092199 Current&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000235554 Current&#39;) + ylim(c(-1.3,1.1)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneV3Current = data.frame(m_V3_EZ_Current_tissuewide$result$PosteriorMean[ind,])
-colnames(stronggeneV3Current) = &#39;EffectSize&#39;
-stronggeneV3Current$Group = row.names(stronggeneV3Current)
-stronggeneV3Current$se = m_V3_EZ_Current_tissuewide$result$PosteriorSD[ind,]
-p4 = ggplot(stronggeneV3Current, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000092199 V3 Current tissuewide&#39;) + 
+stronggeneV3 = data.frame(m_V3_EZ_tissuewide$result$PosteriorMean[ind,])
+colnames(stronggeneV3) = &#39;EffectSize&#39;
+stronggeneV3$Group = row.names(stronggeneV3)
+stronggeneV3$se = m_V3_EZ_tissuewide$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000235554 V3 tissuewide&#39;) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
@@ -1866,6 +1880,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/unnamed-chunk-15-1.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/a0851081c3f606d601a3d45ce41038272b6cd6f3/docs/figure/GTExV6.Rmd/unnamed-chunk-15-1.png" target="_blank">a085108</a>
@@ -1935,6 +1960,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/unnamed-chunk-16-1.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/a0851081c3f606d601a3d45ce41038272b6cd6f3/docs/figure/GTExV6.Rmd/unnamed-chunk-16-1.png" target="_blank">a085108</a>
 </td>
 <td style="text-align:left;">
@@ -1997,8 +2033,8 @@ colnames(x) &lt;- colnames(get_lfsr(m_current_EZ))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))
 
-x           &lt;- get_pairwise_sharing(m_V3_EZ_genewide)
-colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_genewide))
+x           &lt;- get_pairwise_sharing(m_V3_EZ_tissuewide)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_tissuewide))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ genewide&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-1.png" width="2880" style="display: block; margin: auto;" /></p>
@@ -2018,6 +2054,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/326208b04d9f99914f044f71afe3d27a031a6740/docs/figure/GTExV6.Rmd/unnamed-chunk-17-1.png" target="_blank">326208b</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-22
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/a0851081c3f606d601a3d45ce41038272b6cd6f3/docs/figure/GTExV6.Rmd/unnamed-chunk-17-1.png" target="_blank">a085108</a>
@@ -2087,18 +2134,12 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>par(mfrow=c(1,2))
-x           &lt;- get_pairwise_sharing(m_V3_EZ_Current_genewide)
-colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_Current_genewide))
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_V3_EZ_genewide)
+colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_genewide))
 rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current genewide&#39;, mar=c(0,0,5,0))
-
-x           &lt;- get_pairwise_sharing(m_V3_EZ_Current_tissuewide)
-colnames(x) &lt;- colnames(get_lfsr(m_V3_EZ_Current_tissuewide))
-rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current tissuewide&#39;, mar=c(0,0,5,0))</code></pre>
-<p><img src="figure/GTExV6.Rmd/unnamed-chunk-18-1.png" width="2880" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-18-1.png:</em></summary>
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V3 EZ Current genewide&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6.Rmd/unnamed-chunk-17-2.png" width="2880" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-17-2.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
 <thead>
 <tr>
@@ -2116,51 +2157,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/a0851081c3f606d601a3d45ce41038272b6cd6f3/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">a085108</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/8103f2df73083319319b1fa85d3c6c4f296b1c1d/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">8103f2d</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/68fcfdde955f75795ea6bcefeba745f625c4ce29/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">68fcfdd</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5306c8f76093dc136121d237eec1dfd5693cec79/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">5306c8f</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-18-1.png" target="_blank">a4437cb</a>
+<a href="https://github.com/zouyuxin/GTEx/blob/a4437cb53fa9d56504bb2e8176c79f28914b1b17/docs/figure/GTExV6.Rmd/unnamed-chunk-17-2.png" target="_blank">a4437cb</a>
 </td>
 <td style="text-align:left;">
 zouyuxin
