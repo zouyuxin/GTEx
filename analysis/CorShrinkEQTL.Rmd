@@ -34,9 +34,6 @@ gtex.colors <- as.character(gtex.colors)
 ```{r}
 sign = get_significant_results(m_current_EZ)
 gene_names = dimnames(V.null.tissuewide)[[3]]
-name = "ENSG00000107738"
-numg <- grep(name, gene_names)
-# numg = 13837
 numg = 8265
 ```
 
@@ -67,22 +64,28 @@ p3 = ggplot(stronggeneV3, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-
 grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
-```{r}
+```{r fig.align='center', fig.width=30, fig.height=15}
+par(mfrow=c(1,2))
 col2 <- c("blue", "white", "red")
 
-g1 <- corrplot(V.null.tissuewide[,,numg], 
+tmp = V.null.tissuewide[,,numg]
+colnames(tmp) = row.names(stronggene)
+row.names(tmp) = colnames(tmp)
+g1 <- corrplot(tmp, 
                col = colorRampPalette(col2)(200),
-               tl.pos = "td", tl.cex = 0.5, tl.col = "black",
+               tl.pos = "td", tl.cex = 0.5, tl.col = gtex.colors,
                rect.col = "white",na.label.col = "white",
                method = "color", type = "upper") 
 
-g2 <- corrplot(V.kushal.tissuewide[,,numg], 
+tmp = V.kushal.tissuewide[,,numg]
+colnames(tmp) = row.names(stronggene)
+row.names(tmp) = colnames(tmp)
+g2 <- corrplot(tmp, 
                col = colorRampPalette(col2)(200),
-               tl.pos = "td", tl.cex = 0.5, tl.col = "black",
+               tl.pos = "td", tl.cex = 0.5, tl.col = gtex.colors,
                rect.col = "white",na.label.col = "white",
                method = "color", type = "upper") 
 ```
