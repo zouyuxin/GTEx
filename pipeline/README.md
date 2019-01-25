@@ -17,9 +17,18 @@ sos run mashr_flashr_workflow.ipynb mash \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --vhat mle \
     --effect-model EZ \
-    --optmethod mixIP \
-    --mosek-license ~/.mosek.lic \
     $JOB_OPTION
 ```
 
-*NOTE:* I use `--optmethod mixIP` (default is `mixSQP`) because somehow `flash` step failed using `mixSQP`. Upgrading `flashr`/`mixSQP`/`ashr` might help but I did not try it for now ...
+Specifically for `corshrink` (or in general, gene specific covariance) methods, we need to add `--implementation R`
+at this prototyping stage,
+
+```bash
+sos run mashr_flashr_workflow.ipynb mash \
+    --data /project/mstephens/gtex_yuxin/MatrixEQTLSumStats.Portable.Z.rds \
+    --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
+    --vhat corshrink_xcondition \
+    --effect-model EZ \
+    --implementation R \
+    $JOB_OPTION
+```
