@@ -1,11 +1,46 @@
+**/**/.ipynb_checkpoints
+**/**/.sos
+
+## R project files
 .Rproj.user
+*.Rproj
 .Rhistory
 .RData
-.Ruserdata
-.Rapp.history
-.DS_Store
-analysis/figure
-analysis/*png
-analysis/*html
-analysis/*_cache
-analysis/site_libs
+
+## Compiled
+*.o
+*.so
+*.dll
+
+## Temp files
+*~
+*.#*
+
+## ignore mostly when using Rmarkdown
+
+## LaTeX
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.el
+_region_.tex
+*.nav
+*.snm
+*.toc
+
+# packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+# idea credit to @aicherc
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.egg-info

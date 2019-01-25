@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+**/*.rb linguist-language=YAML
+*.dsc linguist-language=YAML
+=======
+*.dsc linguist-language=YAML
+>>>>>>> 161beab54bf1c6c7e4252ac06c299a33c0b41d48
