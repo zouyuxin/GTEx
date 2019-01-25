@@ -12,9 +12,11 @@ JOB_OPTION="-q none -j 8" # use this on an interactive node with 8 "cpus" requir
 For different $V$ methods,
 
 ```bash
-sos run mashr_flashr_workflow.ipynb mash --data /project/mstephens/gtex_yuxin/MatrixEQTLSumStats.Portable.Z.rds \
+sos run mashr_flashr_workflow.ipynb mash \
+    --data /project/mstephens/gtex_yuxin/MatrixEQTLSumStats.Portable.Z.rds \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --vhat mle \
+    --alpha 1 \
     --optmethod mixIP \
     --mosek_license ~/.mosek.lic \
     $JOB_OPTION
