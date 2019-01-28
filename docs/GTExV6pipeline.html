@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yuxin Zou" />
+
+<meta name="date" content="2018-12-20" />
+
+<title>GTEx V6</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GTEx</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">GTEx V6</h1>
+<h4 class="author"><em>Yuxin Zou</em></h4>
+<h4 class="date"><em>2018-12-20</em></h4>
+
+</div>
+
+
+<p><strong>Last updated:</strong> 2019-01-27</p>
+<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<ul>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20181220)</code> </summary></p>
+<p>The command <code>set.seed(20181220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/378989c815a297d30113a6a418841e7d5e047668" target="_blank">378989c</a> </summary></p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
+
+Untracked files:
+    Untracked:  .DS_Store
+    Untracked:  code/Demo_SumstatQuery.R
+    Untracked:  code/flash_fcn.R
+    Untracked:  data/.DS_Store
+    Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
+    Untracked:  data/gene_names_GTEX_V6.txt
+    Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
+    Untracked:  data/order_index.rda
+    Untracked:  data/samples_id.txt
+    Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
+    Untracked:  dsc-mash-gtex/
+    Untracked:  output/.DS_Store
+    Untracked:  output/GTExV6/
+    Untracked:  output/GTExV6pipeline/
+    Untracked:  output/corshrink_noise_gene_1.rds
+
+</code></pre>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
+</li>
+</ul>
+<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/378989c815a297d30113a6a418841e7d5e047668/analysis/GTExV6pipeline.Rmd" target="_blank">378989c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6pipeline.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<p></details></p>
+<hr />
+<pre class="r"><code>library(mashr)</code></pre>
+<pre><code>Loading required package: ashr</code></pre>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)</code></pre>
+<pre class="r"><code>gtex &lt;- readRDS(gzcon(url(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/MatrixEQTLSumStats.Portable.Z.rds?raw=TRUE&quot;)))
+missing.tissues &lt;- c(7, 8, 19, 20, 24, 25, 31, 34, 37)
+gtex.colors &lt;- read.table(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE&quot;, sep = &#39;\t&#39;, comment.char = &#39;&#39;)[-missing.tissues, 2]
+gtex.colors &lt;- as.character(gtex.colors)
+gene.names = as.character(read.table(&#39;data/gene_names.txt&#39;)[,1])</code></pre>
+<p>The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from <code>flash</code>.</p>
+<div id="flash-model-based-on-effects" class="section level2">
+<h2>Flash model based on effects:</h2>
+<pre class="r"><code>factors = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.flash.model.rds&#39;)$factors
+par(mfrow = c(2, 3))
+for(k in 1:13){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
+}</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="flash-model-based-on-z-scores" class="section level2">
+<h2>Flash model based on z scores:</h2>
+<pre class="r"><code>factors = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.flash.model.rds&#39;)$factors
+par(mfrow = c(2, 3))
+for(k in 1:18){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
+}</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># read model
+m_simple_EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.rds&#39;)
+m_simple_EE$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.posterior.rds&#39;)
+m_simple_EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_simple.rds&#39;)
+m_simple_EZ$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_simple.posterior.rds&#39;)
+
+m_mle_EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.rds&#39;)
+m_mle_EE$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.posterior.rds&#39;)
+m_mle_EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.rds&#39;)
+m_mle_EZ$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.posterior.rds&#39;)</code></pre>
+</div>
+<div id="estimated-null-cor-v" class="section level2">
+<h2>Estimated null cor V</h2>
+<pre class="r"><code>V.simple = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple.rds&#39;)
+corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/V-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># dev.off()
+
+V.mle.EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_mle.rds&#39;)
+corrplot::corrplot(V.mle.EE, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EE&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/V-2.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>V.mle.EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_mle.rds&#39;)
+corrplot::corrplot(V.mle.EZ, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/V-3.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE))
+logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ))
+tmp = cbind(logliks, logliks_EZ)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;)
+colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
+tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EE
+</th>
+<th style="text-align:right;">
+EZ
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Simple
+</td>
+<td style="text-align:right;">
+936478.4
+</td>
+<td style="text-align:right;">
+937254.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MLE
+</td>
+<td style="text-align:right;">
+940058.8
+</td>
+<td style="text-align:right;">
+940457.4
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>par(mfrow=c(1,2))
+barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = &#39;Simple EE&#39;)
+barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = &#39;MLE EE&#39;)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)
+barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = &#39;MLE EZ&#39;)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
+<p>Number of significant:</p>
+<pre class="r"><code>numsig_EE = c(length(get_significant_results(m_simple_EE)), 
+              length(get_significant_results(m_mle_EE)))
+numsig_EZ = c(length(get_significant_results(m_simple_EZ)), 
+              length(get_significant_results(m_mle_EZ)))
+tmp = cbind(numsig_EE, numsig_EZ)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;)
+colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
+tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+EE
+</th>
+<th style="text-align:right;">
+EZ
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Simple
+</td>
+<td style="text-align:right;">
+13068
+</td>
+<td style="text-align:right;">
+13519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MLE
+</td>
+<td style="text-align:right;">
+12654
+</td>
+<td style="text-align:right;">
+12986
+</td>
+</tr>
+</tbody>
+</table>
+<p>The gene significant in <code>simple EZ</code>, not in <code>current EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_simple_EZ), get_significant_results(m_mle_EZ))[9]
+stronggene = data.frame(gtex$strong.b[ind,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[ind,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind], &#39; raw&#39;)) + ylim(c(-1,1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneSimple) = &#39;EffectSize&#39;
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; Simple EZ&#39;)) + ylim(c(-1,1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneMLE) = &#39;EffectSize&#39;
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[ind,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; MLE EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<p>The gene <code>MCPH1</code>:</p>
+<pre class="r"><code>stronggene = data.frame(gtex$strong.b[13837,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[13837,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898 row&#39;) + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneSimple) = &#39;EffectSize&#39;
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[13837,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(&#39;ENSG00000249898 Simple EZ&#39;) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneMLE) = &#39;EffectSize&#39;
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[13837,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(&#39;ENSG00000249898 MLE EZ&#39;) + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<p>The pairwise sharing by magnitude</p>
+<pre class="r"><code>par(mfrow = c(1,2))
+clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
+
+x           &lt;- get_pairwise_sharing(m_simple_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_simple_EZ))
+rownames(x) &lt;- colnames(x)
+
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Simple EZ&#39;, mar=c(0,0,5,0))
+
+x           &lt;- get_pairwise_sharing(m_mle_EZ)
+colnames(x) &lt;- colnames(get_lfsr(m_mle_EZ))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" width="2880" style="display: block; margin: auto;" /></p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.5.1 (2018-07-02)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS  10.14.2
+
+Matrix products: default
+BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] gridExtra_2.3     ggplot2_3.1.0     kableExtra_1.0.1  knitr_1.20       
+[5] mashr_0.2.19.0555 ashr_2.2-26      
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_0.2.5  corrplot_0.84     purrr_0.2.5      
+ [4] lattice_0.20-38   colorspace_1.4-0  htmltools_0.3.6  
+ [7] viridisLite_0.3.0 yaml_2.2.0        rlang_0.3.1      
+[10] R.oo_1.22.0       mixsqp_0.1-93     pillar_1.3.1     
+[13] withr_2.1.2       glue_1.3.0        R.utils_2.7.0    
+[16] bindrcpp_0.2.2    bindr_0.1.1       foreach_1.4.4    
+[19] plyr_1.8.4        stringr_1.3.1     munsell_0.5.0    
+[22] gtable_0.2.0      workflowr_1.1.1   rvest_0.3.2      
+[25] R.methodsS3_1.7.1 mvtnorm_1.0-8     codetools_0.2-16 
+[28] evaluate_0.12     labeling_0.3      pscl_1.5.2       
+[31] doParallel_1.0.14 parallel_3.5.1    highr_0.7        
+[34] Rcpp_1.0.0        readr_1.3.1       backports_1.1.3  
+[37] scales_1.0.0      rmeta_3.0         webshot_0.5.1    
+[40] truncnorm_1.0-8   abind_1.4-5       hms_0.4.2        
+[43] digest_0.6.18     stringi_1.2.4     dplyr_0.7.8      
+[46] grid_3.5.1        rprojroot_1.3-2   tools_3.5.1      
+[49] magrittr_1.5      lazyeval_0.2.1    tibble_2.0.1     
+[52] crayon_1.3.4      whisker_0.3-2     pkgconfig_2.0.2  
+[55] MASS_7.3-51.1     Matrix_1.2-15     SQUAREM_2017.10-1
+[58] xml2_1.2.0        assertthat_0.2.0  rmarkdown_1.11   
+[61] httr_1.4.0        rstudioapi_0.9.0  iterators_1.0.10 
+[64] R6_2.3.0          git2r_0.24.0      compiler_3.5.1   </code></pre>
+</div>
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<hr>
+<p>
+  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
+  analysis was created with
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
+</p>
+<hr>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
