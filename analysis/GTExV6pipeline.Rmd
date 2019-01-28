@@ -1,0 +1,187 @@
+---
+title: "GTEx V6"
+author: "Yuxin Zou"
+date: 2018-12-20
+output:
+    workflowr::wflow_html:
+      code_folding: hide
+---
+
+```{r library}
+library(mashr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r read data}
+gtex <- readRDS(gzcon(url("https://github.com/stephenslab/gtexresults/blob/master/data/MatrixEQTLSumStats.Portable.Z.rds?raw=TRUE")))
+missing.tissues <- c(7, 8, 19, 20, 24, 25, 31, 34, 37)
+gtex.colors <- read.table("https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE", sep = '\t', comment.char = '')[-missing.tissues, 2]
+gtex.colors <- as.character(gtex.colors)
+gene.names = as.character(read.table('data/gene_names.txt')[,1])
+```
+
+The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from `flash`.
+
+## Flash model based on effects:
+
+```{r flash EE factors plot}
+factors = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.flash.model.rds')$factors
+par(mfrow = c(2, 3))
+for(k in 1:13){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0("Factor ", k))
+}
+```
+
+## Flash model based on z scores:
+
+```{r flash EZ factors plot}
+factors = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.flash.model.rds')$factors
+par(mfrow = c(2, 3))
+for(k in 1:18){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0("Factor ", k))
+}
+```
+
+```{r}
+# read model
+m_simple_EE = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.rds')
+m_simple_EE$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.posterior.rds')
+m_simple_EZ = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_simple.rds')
+m_simple_EZ$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_simple.posterior.rds')
+
+m_mle_EE = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.rds')
+m_mle_EE$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.posterior.rds')
+m_mle_EZ = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.rds')
+m_mle_EZ$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.posterior.rds')
+```
+
+## Estimated null cor V
+
+```{r V, fig.align='center', fig.height=8,fig.width=8}
+V.simple = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple.rds')
+corrplot::corrplot(V.simple, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'Simple', mar=c(0,0,5,0))
+# dev.off()
+
+V.mle.EE = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_mle.rds')
+corrplot::corrplot(V.mle.EE, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'MLE EE', mar=c(0,0,5,0))
+
+V.mle.EZ = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_mle.rds')
+corrplot::corrplot(V.mle.EZ, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'MLE EZ', mar=c(0,0,5,0))
+```
+
+## Results
+
+```{r loglikelihood}
+logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE))
+logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ))
+tmp = cbind(logliks, logliks_EZ)
+row.names(tmp) = c('Simple', 'MLE')
+colnames(tmp) = c('EE', 'EZ')
+tmp %>% kable() %>% kable_styling()
+```
+
+```{r plot weights, fig.align='center', fig.height=5,fig.width=20}
+par(mfrow=c(1,2))
+barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = 'Simple EE')
+barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = 'MLE EE')
+
+barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = 'Simple EZ')
+barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = 'MLE EZ')
+```
+
+
+Number of significant:
+```{r}
+numsig_EE = c(length(get_significant_results(m_simple_EE)), 
+              length(get_significant_results(m_mle_EE)))
+numsig_EZ = c(length(get_significant_results(m_simple_EZ)), 
+              length(get_significant_results(m_mle_EZ)))
+tmp = cbind(numsig_EE, numsig_EZ)
+row.names(tmp) = c('Simple', 'MLE')
+colnames(tmp) = c('EE', 'EZ')
+tmp %>% kable() %>% kable_styling()
+```
+
+The gene significant in `simple EZ`, not in `current EZ`:
+```{r fig.align='center', fig.width=20, fig.height=10}
+ind = setdiff(get_significant_results(m_simple_EZ), get_significant_results(m_mle_EZ))[9]
+stronggene = data.frame(gtex$strong.b[ind,])
+colnames(stronggene) = 'EffectSize'
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[ind,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind], ' raw')) + ylim(c(-1,1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneSimple) = 'EffectSize'
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],' Simple EZ')) + ylim(c(-1,1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneMLE) = 'EffectSize'
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[ind,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' MLE EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, nrow = 1)
+```
+
+The gene `MCPH1 `:
+```{r fig.align='center',fig.height=15,fig.width=15}
+stronggene = data.frame(gtex$strong.b[13837,])
+colnames(stronggene) = 'EffectSize'
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[13837,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000249898 row') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneSimple) = 'EffectSize'
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[13837,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle('ENSG00000249898 Simple EZ') + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[13837,])
+colnames(stronggeneMLE) = 'EffectSize'
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[13837,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('ENSG00000249898 MLE EZ') + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, nrow = 1)
+```
+
+The pairwise sharing by magnitude
+```{r fig.align='center',fig.height=15,fig.width=30}
+par(mfrow = c(1,2))
+clrs=colorRampPalette(rev(c('darkred', 'red','orange','yellow','cadetblue1', 'cyan', 'dodgerblue4', 'blue','darkorchid1','lightgreen','green', 'forestgreen','darkolivegreen')))(200)
+
+x           <- get_pairwise_sharing(m_simple_EZ)
+colnames(x) <- colnames(get_lfsr(m_simple_EZ))
+rownames(x) <- colnames(x)
+
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Simple EZ', mar=c(0,0,5,0))
+
+x           <- get_pairwise_sharing(m_mle_EZ)
+colnames(x) <- colnames(get_lfsr(m_mle_EZ))
+rownames(x) <- colnames(x)
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Current EZ', mar=c(0,0,5,0))
+```
+
