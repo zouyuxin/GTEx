@@ -28,7 +28,8 @@ sos run mashr_flashr_workflow.ipynb mash \
     --data /project/mstephens/gtex_yuxin/MatrixEQTLSumStats.Portable.Z.rds \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --vhat corshrink_xcondition \
-    --effect-model EZ \
+    --posterior-vhat-file /project/mstephens/gtex_yuxin/V6_MASH_output/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_strong.rds \
     --implementation R \
+    --effect-model EZ \
     $JOB_OPTION
 ```
