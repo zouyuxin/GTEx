@@ -8,4 +8,6 @@ output:
 
 * [GTEx V6](GTExV6.html)
 
+* [GTEx V6 pipeline](GTExV6pipeline.html)
+
 * [CorShrink eQTL](CorShrinkEQTL.html)
