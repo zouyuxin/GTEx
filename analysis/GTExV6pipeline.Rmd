@@ -124,7 +124,7 @@ colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
 
-The gene significant in `simple EZ`, not in `current EZ`:
+The gene significant in `Simple EZ`, not in `MLE EZ`:
 ```{r fig.align='center', fig.width=20, fig.height=20}
 ind = setdiff(get_significant_results(m_simple_EZ), get_significant_results(m_mle_EZ))[9]
 stronggene = data.frame(gtex$strong.b[ind,])
@@ -290,7 +290,7 @@ corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, t
 x           <- get_pairwise_sharing(m_mle_EZ)
 colnames(x) <- colnames(get_lfsr(m_mle_EZ))
 rownames(x) <- colnames(x)
-corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Current EZ', mar=c(0,0,5,0))
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'MLE EZ', mar=c(0,0,5,0))
 ```
 ```{r fig.align='center',fig.height=15,fig.width=30}
 par(mfrow = c(1,2))
