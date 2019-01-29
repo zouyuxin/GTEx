@@ -63,3 +63,19 @@ sos run mashr_flashr_workflow.ipynb mash \
 ```
 
 Also notice that we need to add `--implementation R` at this prototyping stage because the code is currently not available for the Rcpp version yet.
+
+### Using Kushal's existing $V$ estimate
+
+This version of $V$ estimate has signals in it.
+
+```bash
+sos run mashr_flashr_workflow.ipynb mash \
+    --data /project/mstephens/gtex_yuxin/MatrixEQTLSumStats.Portable.Z.rds \
+    --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
+    --effect-model EZ \
+    --vhat corshrink_xcondition \
+    --vhat-file-label kushal \
+    --posterior-vhat-file /project/mstephens/gtex_yuxin/V_kushal_strong_tissuewide.rds \
+    --implementation R \
+    $JOB_OPTION
+```
