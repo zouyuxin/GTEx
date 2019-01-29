@@ -438,7 +438,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-27</p>
+<p><strong>Last updated:</strong> 2019-01-29</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -462,18 +462,17 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/378989c815a297d30113a6a418841e7d5e047668" target="_blank">378989c</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/cadbb28a096bfddfa4bd17ed47adaba091668333" target="_blank">cadbb28</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
+    Ignored:    dsc-mash-gtex/
 
 Untracked files:
     Untracked:  .DS_Store
     Untracked:  code/Demo_SumstatQuery.R
-    Untracked:  code/flash_fcn.R
     Untracked:  data/.DS_Store
     Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
     Untracked:  data/gene_names_GTEX_V6.txt
@@ -481,7 +480,6 @@ Untracked files:
     Untracked:  data/order_index.rda
     Untracked:  data/samples_id.txt
     Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
-    Untracked:  dsc-mash-gtex/
     Untracked:  output/.DS_Store
     Untracked:  output/GTExV6/
     Untracked:  output/GTExV6pipeline/
@@ -514,6 +512,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/cadbb28a096bfddfa4bd17ed47adaba091668333/analysis/GTExV6pipeline.Rmd" target="_blank">cadbb28</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-29
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6pipeline.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/GTExV6pipeline.html" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -555,7 +587,97 @@ par(mfrow = c(2, 3))
 for(k in 1:13){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
-<p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EE factors plot-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EE factors plot-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-2.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EE factors plot-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-3.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 </div>
 <div id="flash-model-based-on-z-scores" class="section level2">
 <h2>Flash model based on z scores:</h2>
@@ -564,7 +686,97 @@ par(mfrow = c(2, 3))
 for(k in 1:18){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
-<p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EZ factors plot-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EZ factors plot-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-2.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of flash EZ factors plot-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-3.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code># read model
 m_simple_EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.rds&#39;)
 m_simple_EE$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.posterior.rds&#39;)
@@ -574,28 +786,128 @@ m_simple_EZ$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Porta
 m_mle_EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.rds&#39;)
 m_mle_EE$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.posterior.rds&#39;)
 m_mle_EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.rds&#39;)
-m_mle_EZ$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.posterior.rds&#39;)</code></pre>
+m_mle_EZ$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.posterior.rds&#39;)
+
+m_Vgene_EE_kushal = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_kushal.mash_model.rds&#39;)
+m_Vgene_EE_kushal$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_kushal.posterior.rds&#39;)
+m_Vgene_EZ_kushal = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.mash_model.rds&#39;)
+m_Vgene_EZ_kushal$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.posterior.rds&#39;)
+
+m_Vgene_EE_nullz = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
+m_Vgene_EE_nullz$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)
+m_Vgene_EZ_nullz = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
+m_Vgene_EZ_nullz$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)</code></pre>
 </div>
 <div id="estimated-null-cor-v" class="section level2">
 <h2>Estimated null cor V</h2>
 <pre class="r"><code>V.simple = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple.rds&#39;)
 corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-1.png" width="768" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of V-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code># dev.off()
 
 V.mle.EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_mle.rds&#39;)
 corrplot::corrplot(V.mle.EE, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EE&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-2.png" width="768" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of V-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-2.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>V.mle.EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_mle.rds&#39;)
 corrplot::corrplot(V.mle.EZ, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-3.png" width="768" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of V-3.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-3.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE))
-logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ))
+<pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_nullz))
+logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_nullz))
 tmp = cbind(logliks, logliks_EZ)
-row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene null z&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -634,22 +946,114 @@ MLE
 940457.4
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Vgene Kushal
+</td>
+<td style="text-align:right;">
+886368.9
+</td>
+<td style="text-align:right;">
+907004.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vgene null z
+</td>
+<td style="text-align:right;">
+1021859.8
+</td>
+<td style="text-align:right;">
+1036059.9
+</td>
+</tr>
 </tbody>
 </table>
 <pre class="r"><code>par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = &#39;Simple EE&#39;)
 barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = &#39;MLE EE&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/plot weights-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EE_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EE Kushal&#39;)
+barplot(get_estimated_pi(m_Vgene_EE_nullz), las=2, cex.names = 0.7, main = &#39;V gene specific EE null z&#39;)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of plot weights-2.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/plot weights-2.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)
 barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = &#39;MLE EZ&#39;)</code></pre>
-<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-3.png" width="1920" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EZ_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EZ Kushal&#39;)
+barplot(get_estimated_pi(m_Vgene_EZ_nullz), las=2, cex.names = 0.7, main = &#39;V gene specific EZ null z&#39;)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-4.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_simple_EE)), 
-              length(get_significant_results(m_mle_EE)))
+              length(get_significant_results(m_mle_EE)), 
+              length(get_significant_results(m_Vgene_EE_kushal)), 
+              length(get_significant_results(m_Vgene_EE_nullz)))
 numsig_EZ = c(length(get_significant_results(m_simple_EZ)), 
-              length(get_significant_results(m_mle_EZ)))
+              length(get_significant_results(m_mle_EZ)),
+              length(get_significant_results(m_Vgene_EZ_kushal)),
+              length(get_significant_results(m_Vgene_EZ_nullz)))
 tmp = cbind(numsig_EE, numsig_EZ)
-row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene null z&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -688,6 +1092,28 @@ MLE
 12986
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Vgene Kushal
+</td>
+<td style="text-align:right;">
+15767
+</td>
+<td style="text-align:right;">
+16066
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vgene null z
+</td>
+<td style="text-align:right;">
+15916
+</td>
+<td style="text-align:right;">
+15967
+</td>
+</tr>
 </tbody>
 </table>
 <p>The gene significant in <code>simple EZ</code>, not in <code>current EZ</code>:</p>
@@ -718,10 +1144,59 @@ p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = &#39;EffectSize&#39;
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Kushal EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The gene <code>MCPH1</code>:</p>
-<pre class="r"><code>stronggene = data.frame(gtex$strong.b[13837,])
+<pre class="r"><code>ind = 13837
+stronggene = data.frame(gtex$strong.b[13837,])
 colnames(stronggene) = &#39;EffectSize&#39;
 stronggene$Group = row.names(stronggene)
 stronggene$se = gtex$strong.s[13837,]
@@ -747,8 +1222,136 @@ p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-grid.arrange(p1, p2, p3, nrow = 1)</code></pre>
-<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" width="1440" style="display: block; margin: auto;" /></p>
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = &#39;EffectSize&#39;
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Kushal EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p>The gene significant in <code>V gene specific EZ (null) tissuewide</code>, not in <code>mle EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_Vgene_EZ_nullz), get_significant_results(m_mle_EZ))[10]
+stronggene = data.frame(gtex$strong.b[ind,])
+colnames(stronggene) = &#39;EffectSize&#39;
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[ind,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; row&#39;)) + ylim(c(-1.3,1.4)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneSimple) = &#39;EffectSize&#39;
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.4)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; Simple EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneMLE) = &#39;EffectSize&#39;
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[ind,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; MLE EZ&#39;)) + ylim(c(-1.3,1.4)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = &#39;EffectSize&#39;
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Kushal EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.4)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<details> <summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" target="_blank">02da57c</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <p>The pairwise sharing by magnitude</p>
 <pre class="r"><code>par(mfrow = c(1,2))
 clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
@@ -763,7 +1366,21 @@ x           &lt;- get_pairwise_sharing(m_mle_EZ)
 colnames(x) &lt;- colnames(get_lfsr(m_mle_EZ))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;Current EZ&#39;, mar=c(0,0,5,0))</code></pre>
-<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" width="2880" style="display: block; margin: auto;" /></p>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" width="2880" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>par(mfrow = c(1,2))
+clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
+
+x           &lt;- get_pairwise_sharing(m_Vgene_EZ_kushal)
+colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_kushal))
+rownames(x) &lt;- colnames(x)
+
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific Kushal EZ&#39;, mar=c(0,0,5,0))
+
+x           &lt;- get_pairwise_sharing(m_Vgene_EZ_nullz)
+colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_nullz))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific Null EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" width="2880" style="display: block; margin: auto;" /></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
