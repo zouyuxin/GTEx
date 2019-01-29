@@ -56,6 +56,17 @@ m_mle_EE = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC
 m_mle_EE$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_mle.posterior.rds')
 m_mle_EZ = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.rds')
 m_mle_EZ$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.mash_model_V_mle.posterior.rds')
+
+m_Vgene_EE_kushal = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_kushal.mash_model.rds')
+m_Vgene_EE_kushal$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_kushal.posterior.rds')
+m_Vgene_EZ_kushal = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.mash_model.rds')
+m_Vgene_EZ_kushal$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.posterior.rds')
+
+m_Vgene_EE_nullz = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds')
+m_Vgene_EE_nullz$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds')
+m_Vgene_EZ_nullz = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds')
+m_Vgene_EZ_nullz$result = readRDS('output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds')
+
 ```
 
 ## Estimated null cor V
@@ -75,10 +86,10 @@ corrplot::corrplot(V.mle.EZ, method='color', type='upper', tl.col="black", tl.sr
 ## Results
 
 ```{r loglikelihood}
-logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE))
-logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ))
+logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_nullz))
+logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_nullz))
 tmp = cbind(logliks, logliks_EZ)
-row.names(tmp) = c('Simple', 'MLE')
+row.names(tmp) = c('Simple', 'MLE', 'Vgene Kushal', 'Vgene null z')
 colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
@@ -87,26 +98,34 @@ tmp %>% kable() %>% kable_styling()
 par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = 'Simple EE')
 barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = 'MLE EE')
+barplot(get_estimated_pi(m_Vgene_EE_kushal), las=2, cex.names = 0.7, main = 'V gene specific EE Kushal')
+barplot(get_estimated_pi(m_Vgene_EE_nullz), las=2, cex.names = 0.7, main = 'V gene specific EE null z')
 
 barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = 'Simple EZ')
 barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = 'MLE EZ')
+barplot(get_estimated_pi(m_Vgene_EZ_kushal), las=2, cex.names = 0.7, main = 'V gene specific EZ Kushal')
+barplot(get_estimated_pi(m_Vgene_EZ_nullz), las=2, cex.names = 0.7, main = 'V gene specific EZ null z')
 ```
 
 
 Number of significant:
 ```{r}
 numsig_EE = c(length(get_significant_results(m_simple_EE)), 
-              length(get_significant_results(m_mle_EE)))
+              length(get_significant_results(m_mle_EE)), 
+              length(get_significant_results(m_Vgene_EE_kushal)), 
+              length(get_significant_results(m_Vgene_EE_nullz)))
 numsig_EZ = c(length(get_significant_results(m_simple_EZ)), 
-              length(get_significant_results(m_mle_EZ)))
+              length(get_significant_results(m_mle_EZ)),
+              length(get_significant_results(m_Vgene_EZ_kushal)),
+              length(get_significant_results(m_Vgene_EZ_nullz)))
 tmp = cbind(numsig_EE, numsig_EZ)
-row.names(tmp) = c('Simple', 'MLE')
+row.names(tmp) = c('Simple', 'MLE', 'Vgene Kushal', 'Vgene null z')
 colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
 
 The gene significant in `simple EZ`, not in `current EZ`:
-```{r fig.align='center', fig.width=20, fig.height=10}
+```{r fig.align='center', fig.width=20, fig.height=20}
 ind = setdiff(get_significant_results(m_simple_EZ), get_significant_results(m_mle_EZ))[9]
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = 'EffectSize'
@@ -134,11 +153,30 @@ p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-grid.arrange(p1, p2, p3, nrow = 1)
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = 'EffectSize'
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Kushal EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = 'EffectSize'
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Null EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
 ```
 
 The gene `MCPH1 `:
-```{r fig.align='center',fig.height=15,fig.width=15}
+```{r fig.align='center',fig.height=20,fig.width=20}
+ind = 13837
 stronggene = data.frame(gtex$strong.b[13837,])
 colnames(stronggene) = 'EffectSize'
 stronggene$Group = row.names(stronggene)
@@ -165,7 +203,77 @@ p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-grid.arrange(p1, p2, p3, nrow = 1)
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = 'EffectSize'
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Kushal EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = 'EffectSize'
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Null EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
+```
+
+The gene significant in `V gene specific EZ (null) tissuewide`, not in `mle EZ`:
+```{r fig.align='center',fig.height=20,fig.width=20}
+ind = setdiff(get_significant_results(m_Vgene_EZ_nullz), get_significant_results(m_mle_EZ))[10]
+stronggene = data.frame(gtex$strong.b[ind,])
+colnames(stronggene) = 'EffectSize'
+stronggene$Group = row.names(stronggene)
+stronggene$se = gtex$strong.s[ind,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],' row')) + ylim(c(-1.3,1.4)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneSimple = data.frame(m_simple_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneSimple) = 'EffectSize'
+stronggeneSimple$Group = row.names(stronggeneSimple)
+stronggeneSimple$se = m_simple_EZ$result$PosteriorSD[ind,]
+p2 = ggplot(stronggeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.4)) + coord_flip() + ggtitle(paste0(gene.names[ind],' Simple EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneMLE) = 'EffectSize'
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[ind,]
+p3 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle(paste0(gene.names[ind],' MLE EZ')) + ylim(c(-1.3,1.4)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneKushal = data.frame(m_Vgene_EZ_kushal$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneKushal) = 'EffectSize'
+stronggeneVgeneKushal$Group = row.names(stronggeneVgeneKushal)
+stronggeneVgeneKushal$se = m_Vgene_EZ_kushal$result$PosteriorSD[ind,]
+p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Kushal EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneNullZ) = 'EffectSize'
+stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
+stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.4)) + coord_flip() + ggtitle(paste0(gene.names[ind],' V gene specific Null EZ')) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+
+grid.arrange(p1, p2, p3, p4, p5, nrow = 2)
 ```
 
 The pairwise sharing by magnitude
@@ -184,4 +292,18 @@ colnames(x) <- colnames(get_lfsr(m_mle_EZ))
 rownames(x) <- colnames(x)
 corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'Current EZ', mar=c(0,0,5,0))
 ```
+```{r fig.align='center',fig.height=15,fig.width=30}
+par(mfrow = c(1,2))
+clrs=colorRampPalette(rev(c('darkred', 'red','orange','yellow','cadetblue1', 'cyan', 'dodgerblue4', 'blue','darkorchid1','lightgreen','green', 'forestgreen','darkolivegreen')))(200)
 
+x           <- get_pairwise_sharing(m_Vgene_EZ_kushal)
+colnames(x) <- colnames(get_lfsr(m_Vgene_EZ_kushal))
+rownames(x) <- colnames(x)
+
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V gene specific Kushal EZ', mar=c(0,0,5,0))
+
+x           <- get_pairwise_sharing(m_Vgene_EZ_nullz)
+colnames(x) <- colnames(get_lfsr(m_Vgene_EZ_nullz))
+rownames(x) <- colnames(x)
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'V gene specific Null EZ', mar=c(0,0,5,0))
+```
