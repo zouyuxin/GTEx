@@ -26,11 +26,13 @@ The `vhat_corshrink_xcondition` performs estimates of gene-specific $V$. Since w
 
 ```bash
 sos run mashr_flashr_workflow.ipynb vhat_corshrink_xcondition \
-    --data ... \
+    --data /project/mstephens/data/internal_supp/gtex-v6-sumstat-hdf5/MatrixEQTLSumStats.h5 \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --effect-model EZ \
     --vhat corshrink_xcondition \
-    --vhat-file-label nullz \
+    --vhat-file-label nullz_step_1 \
+    --util-script /project/mstephens/gtex/scripts/SumstatQuery.R \
+    --gene-list ../data/gene_names.txt \
     $JOB_OPTION
 ```
 
@@ -77,5 +79,19 @@ sos run mashr_flashr_workflow.ipynb mash \
     --vhat-file-label kushal \
     --posterior-vhat-file /project/mstephens/gtex_yuxin/V_kushal_strong_tissuewide.rds \
     --implementation R \
+    $JOB_OPTION
+```
+
+### Using "simple" method but estimate gene specific $V$
+
+```bash
+sos run mashr_flashr_workflow.ipynb vhat_simple_specific \
+    --data /project/mstephens/data/internal_supp/gtex-v6-sumstat-hdf5/MatrixEQTLSumStats.h5 \
+    --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
+    --effect-model EZ \
+    --vhat simple_specific \
+    --vhat-file-label nullz_step_1 \
+    --util-script /project/mstephens/gtex/scripts/SumstatQuery.R \
+    --gene-list ../data/test_names.txt \
     $JOB_OPTION
 ```
