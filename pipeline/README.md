@@ -30,7 +30,6 @@ sos run mashr_flashr_workflow.ipynb vhat_corshrink_xcondition \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --effect-model EZ \
     --vhat corshrink_xcondition \
-    --vhat-file-label nullz_step_1 \
     --util-script /project/mstephens/gtex/scripts/SumstatQuery.R \
     --gene-list ../data/gene_names.txt \
     $JOB_OPTION
@@ -90,8 +89,8 @@ sos run mashr_flashr_workflow.ipynb vhat_simple_specific \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --effect-model EZ \
     --vhat simple_specific \
-    --vhat-file-label nullz_step_1 \
+    --vhat-file-label nullz_step_2 \
     --util-script /project/mstephens/gtex/scripts/SumstatQuery.R \
-    --gene-list ../data/test_names.txt \
+    --gene-list ../data/step_2.txt \
     $JOB_OPTION
 ```
