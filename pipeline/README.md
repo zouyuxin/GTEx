@@ -88,6 +88,7 @@ sos run mashr_flashr_workflow.ipynb mash \
 ```bash
 sos run mashr_flashr_workflow.ipynb vhat_simple_specific \
     --data /project/mstephens/data/internal_supp/gtex-v6-sumstat-hdf5/MatrixEQTLSumStats.h5 \
+    --output-prefix MatrixEQTLSumStats.Portable.Z \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --effect-model EZ \
     --vhat simple_specific \
@@ -103,6 +104,7 @@ sos run mashr_flashr_workflow.ipynb vhat_simple_specific \
 ```bash
 sos run mashr_flashr_workflow.ipynb vhat_simple_specific \
     --data /project/mstephens/data/internal_supp/gtex-v6-sumstat-hdf5/MatrixEQTLSumStats.h5 \
+    --output-prefix MatrixEQTLSumStats.Portable.Z \
     --cwd /project/mstephens/gtex_yuxin/V6_MASH_output \
     --effect-model EZ \
     --vhat simple_specific \
@@ -121,7 +123,7 @@ sos run mashr_flashr_workflow.ipynb mash \
     --effect-model EZ \
     --vhat simple_specific \
     --vhat-file-label nullz_step_1 \
-    --posterior-vhat-file /project/mstephens/gtex_yuxin/V6_MASH_output/MatrixEQTLSumStats.EZ.FL_PC3.V_simple_specific_nullz_step_2.rds \
+    --posterior-vhat-file /project/mstephens/gtex_yuxin/V6_MASH_output/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_simple_specific_nullz_step_2.rds \
     --implementation R \
-    $JOB_OPTION
+    $JOB_OPTION -s build
 ```
