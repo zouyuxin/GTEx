@@ -438,7 +438,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-29</p>
+<p><strong>Last updated:</strong> 2019-02-08</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -462,12 +462,13 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/8607dea321765299455d7b42b59e9dfbb565e7d6" target="_blank">8607dea</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/77b789dea4ecf9f8890622950bd28bafd7abcfce" target="_blank">77b789d</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
     Ignored:    dsc-mash-gtex/
 
 Untracked files:
@@ -512,6 +513,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/77b789dea4ecf9f8890622950bd28bafd7abcfce/analysis/GTExV6pipeline.Rmd" target="_blank">77b789d</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-02-08
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/GTExV6pipeline.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/58e443e8107f5403ef76edaa825dd6ce2df40ff3/docs/GTExV6pipeline.html" target="_blank">58e443e</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-29
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -827,10 +862,16 @@ m_Vgene_EE_kushal$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats
 m_Vgene_EZ_kushal = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.mash_model.rds&#39;)
 m_Vgene_EZ_kushal$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_kushal.posterior.rds&#39;)
 
-m_Vgene_EE_nullz = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
-m_Vgene_EE_nullz$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)
-m_Vgene_EZ_nullz = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
-m_Vgene_EZ_nullz$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)</code></pre>
+m_Vgene_EE_simple_corshrink = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
+m_Vgene_EE_simple_corshrink$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)
+m_Vgene_EZ_simple_corshrink = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.mash_model.rds&#39;)
+m_Vgene_EZ_simple_corshrink$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_corshrink_xcondition_nullz.posterior.rds&#39;)
+
+m_Vgene_EE_simple = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple_specific_nullz_step_1.mash_model.rds&#39;)
+m_Vgene_EE_simple$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple_specific_nullz_step_2.posterior.rds&#39;)
+
+m_Vgene_EZ_simple = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_simple_specific_nullz_step_1.mash_model.rds&#39;)
+m_Vgene_EZ_simple$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_simple_specific_nullz_step_2.posterior.rds&#39;)</code></pre>
 </div>
 <div id="estimated-null-cor-v" class="section level2">
 <h2>Estimated null cor V</h2>
@@ -938,10 +979,10 @@ zouyuxin
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_nullz))
-logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_nullz))
+<pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_simple), get_loglik(m_Vgene_EE_simple_corshrink))
+logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_simple), get_loglik(m_Vgene_EZ_simple_corshrink))
 tmp = cbind(logliks, logliks_EZ)
-row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene null z&#39;)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene simple&#39;, &#39;Vgene simple corshrink&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -993,7 +1034,18 @@ Vgene Kushal
 </tr>
 <tr>
 <td style="text-align:left;">
-Vgene null z
+Vgene simple
+</td>
+<td style="text-align:right;">
+1001931.7
+</td>
+<td style="text-align:right;">
+1011877.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vgene simple corshrink
 </td>
 <td style="text-align:right;">
 1021859.8
@@ -1039,7 +1091,7 @@ zouyuxin
 </table>
 <p></details></p>
 <pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EE_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EE Kushal&#39;)
-barplot(get_estimated_pi(m_Vgene_EE_nullz), las=2, cex.names = 0.7, main = &#39;V gene specific EE null z&#39;)</code></pre>
+barplot(get_estimated_pi(m_Vgene_EE_simple), las=2, cex.names = 0.7, main = &#39;V gene specific EE simple&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of plot weights-2.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1082,8 +1134,9 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)
-barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = &#39;MLE EZ&#39;)</code></pre>
+<pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EE_simple_corshrink), las=2, cex.names = 0.7, main = &#39;V gene specific EE simple corshrink&#39;)
+
+barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-3.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of plot weights-3.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1115,8 +1168,8 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EZ_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EZ Kushal&#39;)
-barplot(get_estimated_pi(m_Vgene_EZ_nullz), las=2, cex.names = 0.7, main = &#39;V gene specific EZ null z&#39;)</code></pre>
+<pre class="r"><code>barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = &#39;MLE EZ&#39;)
+barplot(get_estimated_pi(m_Vgene_EZ_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EZ Kushal&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-4.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of plot weights-4.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1148,17 +1201,22 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
+<pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EZ_simple), las=2, cex.names = 0.7, main = &#39;V gene specific EZ simple&#39;)
+barplot(get_estimated_pi(m_Vgene_EZ_simple_corshrink), las=2, cex.names = 0.7, main = &#39;V gene specific EZ simple corshrink&#39;)</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-5.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_simple_EE)), 
               length(get_significant_results(m_mle_EE)), 
               length(get_significant_results(m_Vgene_EE_kushal)), 
-              length(get_significant_results(m_Vgene_EE_nullz)))
+              length(get_significant_results(m_Vgene_EE_simple)),
+              length(get_significant_results(m_Vgene_EE_simple_corshrink)))
 numsig_EZ = c(length(get_significant_results(m_simple_EZ)), 
               length(get_significant_results(m_mle_EZ)),
               length(get_significant_results(m_Vgene_EZ_kushal)),
-              length(get_significant_results(m_Vgene_EZ_nullz)))
+              length(get_significant_results(m_Vgene_EZ_simple)),
+              length(get_significant_results(m_Vgene_EZ_simple_corshrink)))
 tmp = cbind(numsig_EE, numsig_EZ)
-row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene null z&#39;)
+row.names(tmp) = c(&#39;Simple&#39;, &#39;MLE&#39;, &#39;Vgene Kushal&#39;, &#39;Vgene simple&#39;, &#39;Vgene simple corshrink&#39;)
 colnames(tmp) = c(&#39;EE&#39;, &#39;EZ&#39;)
 tmp %&gt;% kable() %&gt;% kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1210,7 +1268,18 @@ Vgene Kushal
 </tr>
 <tr>
 <td style="text-align:left;">
-Vgene null z
+Vgene simple
+</td>
+<td style="text-align:right;">
+15684
+</td>
+<td style="text-align:right;">
+15838
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vgene simple corshrink
 </td>
 <td style="text-align:right;">
 15916
@@ -1258,16 +1327,25 @@ p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
-colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
-stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
-stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
-p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+stronggeneVgeneSimple = data.frame(m_Vgene_EZ_simple$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimple) = &#39;EffectSize&#39;
+stronggeneVgeneSimple$Group = row.names(stronggeneVgeneSimple)
+stronggeneVgeneSimple$se = m_Vgene_EZ_simple$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple EZ&#39;)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
+stronggeneVgeneSimpleCor = data.frame(m_Vgene_EZ_simple_corshrink$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimpleCor) = &#39;EffectSize&#39;
+stronggeneVgeneSimpleCor$Group = row.names(stronggeneVgeneSimpleCor)
+stronggeneVgeneSimpleCor$se = m_Vgene_EZ_simple_corshrink$result$PosteriorSD[ind,]
+p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple corshrink EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1347,17 +1425,26 @@ p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
-colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
-stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
-stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
-p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+stronggeneVgeneSimple = data.frame(m_Vgene_EZ_simple$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimple) = &#39;EffectSize&#39;
+stronggeneVgeneSimple$Group = row.names(stronggeneVgeneSimple)
+stronggeneVgeneSimple$se = m_Vgene_EZ_simple$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneSimpleCor = data.frame(m_Vgene_EZ_simple_corshrink$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimpleCor) = &#39;EffectSize&#39;
+stronggeneVgeneSimpleCor$Group = row.names(stronggeneVgeneSimpleCor)
+stronggeneVgeneSimpleCor$se = m_Vgene_EZ_simple_corshrink$result$PosteriorSD[ind,]
+p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple corshrink EZ&#39;)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 
-grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
+grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1400,8 +1487,8 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
-<p>The gene significant in <code>V gene specific EZ (null) tissuewide</code>, not in <code>mle EZ</code>:</p>
-<pre class="r"><code>ind = setdiff(get_significant_results(m_Vgene_EZ_nullz), get_significant_results(m_mle_EZ))[10]
+<p>The gene significant in <code>V gene specific EZ (simple corshrink) tissuewide</code>, not in <code>mle EZ</code>:</p>
+<pre class="r"><code>ind = setdiff(get_significant_results(m_Vgene_EZ_simple_corshrink), get_significant_results(m_mle_EZ))[10]
 stronggene = data.frame(gtex$strong.b[ind,])
 colnames(stronggene) = &#39;EffectSize&#39;
 stronggene$Group = row.names(stronggene)
@@ -1437,17 +1524,26 @@ p4 = ggplot(stronggeneVgeneKushal, aes(y = EffectSize, x = Group)) +
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
-stronggeneVgeneNullZ = data.frame(m_Vgene_EZ_nullz$result$PosteriorMean[ind,])
-colnames(stronggeneVgeneNullZ) = &#39;EffectSize&#39;
-stronggeneVgeneNullZ$Group = row.names(stronggeneVgeneNullZ)
-stronggeneVgeneNullZ$se = m_Vgene_EZ_nullz$result$PosteriorSD[ind,]
-p5 = ggplot(stronggeneVgeneNullZ, aes(y = EffectSize, x = Group)) + 
-  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1.3,1.4)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific Null EZ&#39;)) + 
+stronggeneVgeneSimple = data.frame(m_Vgene_EZ_simple$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimple) = &#39;EffectSize&#39;
+stronggeneVgeneSimple$Group = row.names(stronggeneVgeneSimple)
+stronggeneVgeneSimple$se = m_Vgene_EZ_simple$result$PosteriorSD[ind,]
+p5 = ggplot(stronggeneVgeneSimple, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple EZ&#39;)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneVgeneSimpleCor = data.frame(m_Vgene_EZ_simple_corshrink$result$PosteriorMean[ind,])
+colnames(stronggeneVgeneSimpleCor) = &#39;EffectSize&#39;
+stronggeneVgeneSimpleCor$Group = row.names(stronggeneVgeneSimpleCor)
+stronggeneVgeneSimpleCor$se = m_Vgene_EZ_simple_corshrink$result$PosteriorSD[ind,]
+p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + ylim(c(-1,1)) + coord_flip() + ggtitle(paste0(gene.names[ind],&#39; V gene specific simple corshrink EZ&#39;)) + 
   geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
   theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
 
 
-grid.arrange(p1, p2, p3, p4, p5, nrow = 2)</code></pre>
+grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1523,6 +1619,17 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/58e443e8107f5403ef76edaa825dd6ce2df40ff3/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" target="_blank">58e443e</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" target="_blank">5d17b16</a>
 </td>
 <td style="text-align:left;">
@@ -1544,10 +1651,10 @@ rownames(x) &lt;- colnames(x)
 
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific Kushal EZ&#39;, mar=c(0,0,5,0))
 
-x           &lt;- get_pairwise_sharing(m_Vgene_EZ_nullz)
-colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_nullz))
+x           &lt;- get_pairwise_sharing(m_Vgene_EZ_simple)
+colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_simple))
 rownames(x) &lt;- colnames(x)
-corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific Null EZ&#39;, mar=c(0,0,5,0))</code></pre>
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific simple EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" width="2880" style="display: block; margin: auto;" /></p>
 <details> <summary><em>Expand here to see past versions of unnamed-chunk-7-1.png:</em></summary>
 <table style="border-collapse:separate; border-spacing:5px;">
@@ -1579,6 +1686,11 @@ zouyuxin
 </tbody>
 </table>
 <p></details></p>
+<pre class="r"><code>x           &lt;- get_pairwise_sharing(m_Vgene_EZ_simple_corshrink)
+colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_simple_corshrink))
+rownames(x) &lt;- colnames(x)
+corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific simple corshrink EZ&#39;, mar=c(0,0,5,0))</code></pre>
+<p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-7-2.png" width="2880" style="display: block; margin: auto;" /></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
