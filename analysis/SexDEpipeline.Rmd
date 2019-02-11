@@ -1,0 +1,141 @@
+---
+title: "GTEx sexDE"
+author: "Yuxin Zou"
+date: 2019-02-11
+output:
+    workflowr::wflow_html:
+      code_folding: hide
+---
+
+```{r library}
+library(mashr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r read data}
+sexde <- readRDS('data/sexde/sexde.rds')
+
+missing.tissues <- c(7, 24, 25, 31, 40, 43, 49, 51, 52)
+gtex.colors <- read.table("https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE", sep = '\t', comment.char = '')[-missing.tissues, 2]
+gtex.colors <- as.character(gtex.colors)
+```
+
+The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from `flash`.
+
+## Flash model based on effects:
+
+```{r flash EE factors plot}
+factors = readRDS('output/sexde/sexde.EE.flash.model.rds')$factors
+par(mfrow = c(2, 3))
+for(k in 1:7){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0("Factor ", k))
+}
+```
+
+## Flash model based on z scores:
+
+```{r flash EZ factors plot}
+factors = readRDS('output/sexde/sexde.EZ.flash.model.rds')$factors
+par(mfrow = c(2, 3))
+for(k in 1:16){
+  barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0("Factor ", k))
+}
+```
+
+```{r}
+# read model
+m_mle_EE = readRDS('output/sexde/sexde.EE.FL_PC3.V_mle.mash_model.rds')
+m_mle_EE$result = readRDS('output/sexde/sexde.EE.FL_PC3.V_mle.posterior.random.script.rds')
+m_mle_EZ = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.mash_model.rds')
+m_mle_EZ$result = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.posterior.random.rds')
+```
+
+## Estimated null cor V
+
+```{r V, fig.align='center', fig.height=8,fig.width=8}
+V.mle.EE = readRDS('output/sexde/sexde.EE.FL_PC3.V_mle.rds')
+corrplot::corrplot(V.mle.EE, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'MLE EE', mar=c(0,0,5,0))
+
+V.mle.EZ = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.rds')
+corrplot::corrplot(V.mle.EZ, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c("blue", "white", "red"))(200), cl.lim = c(-1,1), title = 'MLE EZ', mar=c(0,0,5,0))
+```
+
+## Results
+
+```{r loglikelihood}
+logliks = c(get_loglik(m_mle_EE))
+logliks_EZ = c(get_loglik(m_mle_EZ))
+tmp = cbind(logliks, logliks_EZ)
+row.names(tmp) = c('MLE')
+colnames(tmp) = c('EE', 'EZ')
+tmp %>% kable() %>% kable_styling()
+```
+
+```{r plot weights, fig.align='center', fig.height=5,fig.width=20}
+par(mfrow=c(1,2))
+barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = 'MLE EE')
+
+barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = 'MLE EZ')
+```
+
+
+Number of significant:
+```{r}
+numsig_EE = c(length(get_significant_results(m_mle_EE)))
+numsig_EZ = c(length(get_significant_results(m_mle_EZ)))
+tmp = cbind(numsig_EE, numsig_EZ)
+row.names(tmp) = c('MLE')
+colnames(tmp) = c('EE', 'EZ')
+tmp %>% kable() %>% kable_styling()
+```
+
+The pairwise sharing by magnitude
+```{r fig.align='center',fig.height=15,fig.width=30}
+par(mfrow = c(1,2))
+clrs=colorRampPalette(rev(c('darkred', 'red','orange','yellow','cadetblue1', 'cyan', 'dodgerblue4', 'blue','darkorchid1','lightgreen','green', 'forestgreen','darkolivegreen')))(200)
+
+x           <- get_pairwise_sharing(m_mle_EE)
+colnames(x) <- colnames(get_lfsr(m_mle_EE))
+rownames(x) <- colnames(x)
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'MLE EE', mar=c(0,0,5,0))
+
+x           <- get_pairwise_sharing(m_mle_EZ)
+colnames(x) <- colnames(get_lfsr(m_mle_EZ))
+rownames(x) <- colnames(x)
+corrplot::corrplot(x, method='color', type='upper', tl.col="black", tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = 'MLE EZ', mar=c(0,0,5,0))
+```
+
+```{r}
+meta_result = read.table('data/sexde/meta.sexde.svs.FE.allgenes.txt', header = TRUE)
+meta_gene = as.character(meta_result$gene[meta_result$qval < 0.05])
+length(intersect(meta_gene, names(get_significant_results(m_mle_EZ))))
+```
+
+There are 11929 significant genes from meta analysis, 9707 of them are significant in mash model (EZ) as well.
+
+The gene significant in meta analysis, not in `MLE EZ`:
+```{r fig.align='center',fig.height=20,fig.width=20}
+ind.name = setdiff(meta_gene, names(get_significant_results(m_mle_EZ)))[1]
+ind = which(row.names(sexde$random.b) == ind.name)
+stronggene = data.frame(sexde$random.b[ind,])
+colnames(stronggene) = 'EffectSize'
+stronggene$Group = row.names(stronggene)
+stronggene$se = sexde$random.s[ind,]
+p1 = ggplot(stronggene, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('Row') + ylim(c(-1.3,1.1)) + geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+stronggeneMLE = data.frame(m_mle_EZ$result$PosteriorMean[ind,])
+colnames(stronggeneMLE) = 'EffectSize'
+stronggeneMLE$Group = row.names(stronggeneMLE)
+stronggeneMLE$se = m_mle_EZ$result$PosteriorSD[ind,]
+p2 = ggplot(stronggeneMLE, aes(y = EffectSize, x = Group)) + 
+  geom_point(show.legend = FALSE, color=gtex.colors) + coord_flip() + ggtitle('MLE EZ') + ylim(c(-1.3,1.1)) + 
+  geom_errorbar(aes(ymin=EffectSize-1.96*se, ymax=EffectSize+1.96*se), width=0.4, show.legend = FALSE, color=gtex.colors) + 
+  theme_bw(base_size=12) + theme(axis.text.y = element_text(colour = gtex.colors, size = 6))
+
+grid.arrange(p1, p2, nrow = 1)
+```
