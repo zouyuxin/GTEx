@@ -318,7 +318,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-01-27</p>
+<p><strong>Last updated:</strong> 2019-02-11</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -327,29 +327,30 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/75633d292e7db9cd32d107c142013ce664d698f7" target="_blank">75633d2</a> </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/653fdb12c64d9408dc922537617111b371e74a96" target="_blank">653fdb1</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    dsc-mash-gtex/
 
 Untracked files:
     Untracked:  .DS_Store
     Untracked:  code/Demo_SumstatQuery.R
-    Untracked:  code/flash_fcn.R
     Untracked:  data/.DS_Store
     Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
     Untracked:  data/gene_names_GTEX_V6.txt
     Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
     Untracked:  data/order_index.rda
     Untracked:  data/samples_id.txt
+    Untracked:  data/sexde/
     Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
-    Untracked:  dsc-mash-gtex/
     Untracked:  output/.DS_Store
     Untracked:  output/GTExV6/
     Untracked:  output/GTExV6pipeline/
     Untracked:  output/corshrink_noise_gene_1.rds
+    Untracked:  output/sexde/
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
@@ -378,6 +379,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/zouyuxin/GTEx/blob/653fdb12c64d9408dc922537617111b371e74a96/analysis/index.Rmd" target="_blank">653fdb1</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-02-11
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/zouyuxin/GTEx/f1b7e30bd5bdc5cc4210889d6e5fd2bc9e765d56/docs/index.html" target="_blank">f1b7e30</a>
+</td>
+<td style="text-align:left;">
+zouyuxin
+</td>
+<td style="text-align:left;">
+2019-01-27
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -523,6 +558,7 @@ Start workflowr project.
 <li><p><a href="GTExV6.html">GTEx V6</a></p></li>
 <li><p><a href="GTExV6pipeline.html">GTEx V6 pipeline</a></p></li>
 <li><p><a href="CorShrinkEQTL.html">CorShrink eQTL</a></p></li>
+<li><p><a href="SexDEpipeline.html">GTEx Sex Differential expressed</a></p></li>
 </ul>
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
