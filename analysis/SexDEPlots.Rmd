@@ -7,7 +7,7 @@ output:
     code_folding: hide
 ---
 
-```{r library}
+```{r library, warning=FALSE,message=FALSE}
 library(mashr)
 library(knitr)
 library(kableExtra)
