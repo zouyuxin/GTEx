@@ -71,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -192,8 +190,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -267,6 +263,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
@@ -318,17 +323,65 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-02-11</p>
-<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
-<ul>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
-</details>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/653fdb12c64d9408dc922537617111b371e74a96" target="_blank">653fdb1</a> </summary></p>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-06-05
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>GTEx/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree3b58cbd353880c217411f735a19dceacc131eef5targetblank3b58cbda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/3b58cbd353880c217411f735a19dceacc131eef5" target="_blank">3b58cbd</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree3b58cbd353880c217411f735a19dceacc131eef5targetblank3b58cbda" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
@@ -352,214 +405,265 @@ Untracked files:
     Untracked:  output/corshrink_noise_gene_1.rds
     Untracked:  output/sexde/
 
+Unstaged changes:
+    Modified:   analysis/SexDEpipeline.Rmd
+
 </code></pre>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
-</li>
-</ul>
-<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
-<ul>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 File
 </th>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
-<th style="text-align:left;">
+<th>
 Message
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/653fdb12c64d9408dc922537617111b371e74a96/analysis/index.Rmd" target="_blank">653fdb1</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/3b58cbd353880c217411f735a19dceacc131eef5/analysis/index.Rmd" target="_blank">3b58cbd</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-06-05
+</td>
+<td>
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/8b99da30d5ec86ece9e61464d77fdf2a667fefca/docs/index.html" target="_blank">8b99da3</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-02-11
 </td>
-<td style="text-align:left;">
-wflow_publish(“analysis/index.Rmd”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-html
-</td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/f1b7e30bd5bdc5cc4210889d6e5fd2bc9e765d56/docs/index.html" target="_blank">f1b7e30</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-27
-</td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/653fdb12c64d9408dc922537617111b371e74a96/analysis/index.Rmd" target="_blank">653fdb1</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-02-11
+</td>
+<td>
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/f1b7e30bd5bdc5cc4210889d6e5fd2bc9e765d56/docs/index.html" target="_blank">f1b7e30</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-01-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/75633d292e7db9cd32d107c142013ce664d698f7/analysis/index.Rmd" target="_blank">75633d2</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/index.Rmd”)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/a455425662e64865f9ea5170bf76c2a169aa1a6b/docs/index.html" target="_blank">a455425</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/a455425662e64865f9ea5170bf76c2a169aa1a6b/docs/index.html" target="_blank">a455425</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-23
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/e8b38358bdd2439dfb355ba2b75921f1ede219be/analysis/index.Rmd" target="_blank">e8b3835</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-23
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/index.Rmd”)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/1ad75ddb6ed37b7a72910f62855096d2f2ee49b8/docs/index.html" target="_blank">1ad75dd</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/1ad75ddb6ed37b7a72910f62855096d2f2ee49b8/docs/index.html" target="_blank">1ad75dd</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-01
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/ce38cb62da274f7a31d9806cfc68ac3b07c24719/analysis/index.Rmd" target="_blank">ce38cb6</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-01
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/index.Rmd”)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/ccfd912d40e41b9453db0376d4057ed68f82f611/docs/index.html" target="_blank">ccfd912</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/ccfd912d40e41b9453db0376d4057ed68f82f611/docs/index.html" target="_blank">ccfd912</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2018-12-20
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/8fcb4080944c75db41dcdd93c01e401ab9f9cc45/docs/index.html" target="_blank">8fcb408</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/8fcb4080944c75db41dcdd93c01e401ab9f9cc45/docs/index.html" target="_blank">8fcb408</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2018-12-20
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/7f50f53304f3801e5a27757ded7698b387729518/analysis/index.Rmd" target="_blank">7f50f53</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2018-12-20
 </td>
-<td style="text-align:left;">
+<td>
 Start workflowr project.
 </td>
 </tr>
 </tbody>
 </table>
-</ul>
-<p></details></p>
-<hr />
+</div>
+<hr>
+</div>
+</div>
+</div>
 <ul>
 <li><p><a href="GTExV6.html">GTEx V6</a></p></li>
 <li><p><a href="GTExV6pipeline.html">GTEx V6 pipeline</a></p></li>
 <li><p><a href="CorShrinkEQTL.html">CorShrink eQTL</a></p></li>
 <li><p><a href="SexDEpipeline.html">GTEx Sex Differential expressed</a></p></li>
+<li><p><a href="SexDEPlots.html">GTEx Sex Differential expressed Plots</a></p></li>
 </ul>
+
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
@@ -572,14 +676,6 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
-
-<hr>
-<p>
-  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-  analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
-</p>
-<hr>
 
 
 
