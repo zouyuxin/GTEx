@@ -1,0 +1,162 @@
+---
+title: "SexDEPlots"
+author: "Yuxin Zou"
+date: "6/5/2019"
+output: 
+  workflowr::wflow_html:
+    code_folding: hide
+---
+
+```{r library}
+library(mashr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+m_mle_EZ = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.mash_model.rds')
+m_mle_EZ$result = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.posterior.random.rds')
+m_mle_EZ_mean = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.mash_model.rds')
+m_mle_EZ_mean$result = readRDS('output/sexde/sexde.EZ.FL_PC3.V_mle.posterior.random.mean.script.rds')
+```
+
+```{r}
+sig_thresh = 0.01
+```
+
+Number of significant:
+```{r}
+numsig_EZ = c(length(get_significant_results(m_mle_EZ, thresh=sig_thresh)))
+numsig_EZ_mean = c(length(get_significant_results(m_mle_EZ_mean, thresh = sig_thresh)))
+tmp = cbind(numsig_EZ, numsig_EZ_mean)
+row.names(tmp) = c('MLE')
+colnames(tmp) = c('EZ', 'EZ mean')
+tmp %>% kable() %>% kable_styling()
+```
+
+## Plot 1
+
+Barplot for number of tissues shared by significance:
+```{r}
+sig = m_mle_EZ$result$lfsr < sig_thresh
+num = table(rowSums(sig))
+num = num[-1]
+barplot(num, las=2, cex.names=0.7, ylab='number of genes', xlab='number of tissues')
+```
+
+## Plot 2
+
+```{r}
+load('data/sexde/color_abb_codes.Robj')
+geno = read.delim('data/sexde/genetypes.txt', header = FALSE)
+geno$V2 = gsub("_.*$", "", geno$V2)
+colnames(geno) = c('chr', 'GENE', 'V3')
+geno=geno %>% distinct(GENE, .keep_all = TRUE)
+```
+
+Volcano Plot using average posterior mean:
+
+```{r}
+data = data.frame(GENE = rownames(m_mle_EZ_mean$result$PosteriorMean), PosteriorMean = m_mle_EZ_mean$result$PosteriorMean, PosteriorSD = m_mle_EZ_mean$result$PosteriorSD, lfsr = m_mle_EZ_mean$result$lfsr, sharing = rowSums(sig))
+data$lfsr[data$lfsr < 0] = 0
+data = inner_join(data, geno, by='GENE')
+data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
+data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+```
+
+```{r}
+p = ggplot(data, aes(x = PosteriorMean, y = -log10(lfsr+1e-8))) +
+  geom_point(aes(color = Significant, size = sharing, shape=position)) + xlim(-10,10) +
+  scale_color_manual(values = c("red", "grey")) +
+  geom_errorbarh(aes(xmin=PosteriorMean-2*PosteriorSD, xmax=PosteriorMean+2*PosteriorSD, color = Significant),cex=0.5)+ 
+  ylab('-log10(lfsr)') + xlab('effect size') + 
+  theme_bw(base_size = 12) + theme(legend.position = "bottom")
+p
+```
+
+Volcano Plot using max effect size:
+
+```{r}
+a = apply(abs(m_mle_EZ$result$PosteriorMean), 1, which.max)
+beta = sapply(1:nrow(m_mle_EZ$result$PosteriorMean), function(i) m_mle_EZ$result$PosteriorMean[i, a[i]])
+se = sapply(1:nrow(m_mle_EZ$result$PosteriorSD), function(i) m_mle_EZ$result$PosteriorSD[i, a[i]])
+lfsr = sapply(1:nrow(m_mle_EZ$result$lfsr), function(i) m_mle_EZ$result$lfsr[i, a[i]])
+data = data.frame(GENE = rownames(m_mle_EZ$result$PosteriorMean), PosteriorMean = beta, PosteriorSD = se, lfsr = lfsr, sharing = rowSums(sig))
+data$lfsr[data$lfsr < 0] = 0
+data = inner_join(data, geno, by='GENE')
+data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
+data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+```
+
+```{r}
+p = ggplot(data, aes(x = PosteriorMean, y = -log10(lfsr+1e-8))) +
+  geom_point(aes(color = Significant, size = sharing, shape=position)) + xlim(-12, 12) + 
+  scale_color_manual(values = c("red", "grey")) +
+  geom_errorbarh(aes(xmin=PosteriorMean-2*PosteriorSD, xmax=PosteriorMean+2*PosteriorSD, color = Significant),cex=0.5)+ 
+  ylab('-log10(lfsr)') + xlab('effect size') + 
+  theme_bw(base_size = 12) + theme(legend.position = "bottom")
+p
+```
+
+## Plot 3
+
+Forest Plot using average posterior mean:
+```{r}
+data = data.frame(GENE = rownames(m_mle_EZ_mean$result$PosteriorMean), PosteriorMean = m_mle_EZ_mean$result$PosteriorMean, PosteriorSD = m_mle_EZ_mean$result$PosteriorSD, lfsr = m_mle_EZ_mean$result$lfsr, sharing = rowSums(sig))
+data$lfsr[data$lfsr < 0] = 0
+data = inner_join(data, geno, by='GENE')
+data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
+data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+data = data %>% arrange(desc(lfsr))
+data$GENE = factor(data$GENE, levels = data$GENE)
+
+p = ggplot(data=data,
+    aes(x = GENE,y = PosteriorMean))+
+    geom_point(aes(shape=position, size=sharing))+
+    geom_hline(yintercept =0, linetype=2)+
+    xlab('')+ ylab("logFC")+
+    geom_errorbar(aes(ymin=PosteriorMean-2*PosteriorSD, ymax=PosteriorMean+2*PosteriorSD),width=0.5,cex=0.5)+ 
+    theme(plot.title=element_text(size=16,face="bold"),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_text(face="bold"),
+        axis.title=element_text(size=12,face="bold"),
+        strip.text.y = element_text(hjust=0,vjust = 1,angle=180,face="bold"))+
+    coord_flip()
+p
+```
+
+Forest Plot using max effect size:
+
+```{r}
+a = apply(abs(m_mle_EZ$result$PosteriorMean), 1, which.max)
+beta = sapply(1:nrow(m_mle_EZ$result$PosteriorMean), function(i) m_mle_EZ$result$PosteriorMean[i, a[i]])
+se = sapply(1:nrow(m_mle_EZ$result$PosteriorSD), function(i) m_mle_EZ$result$PosteriorSD[i, a[i]])
+lfsr = sapply(1:nrow(m_mle_EZ$result$lfsr), function(i) m_mle_EZ$result$lfsr[i, a[i]])
+data = data.frame(GENE = rownames(m_mle_EZ$result$PosteriorMean), PosteriorMean = beta, PosteriorSD = se, lfsr = lfsr, sharing = rowSums(sig))
+data$lfsr[data$lfsr < 0] = 0
+data = inner_join(data, geno, by='GENE')
+data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
+data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+data = data %>% arrange(desc(lfsr))
+data$GENE = factor(data$GENE, levels = data$GENE)
+
+p = ggplot(data=data,
+    aes(x = GENE,y = PosteriorMean))+
+    geom_point(aes(shape=position, size=sharing))+
+    geom_hline(yintercept =0, linetype=2)+
+    xlab('')+ ylab("logFC")+
+    geom_errorbar(aes(ymin=PosteriorMean-2*PosteriorSD, ymax=PosteriorMean+2*PosteriorSD),width=0.5,cex=0.5)+ 
+    theme(plot.title=element_text(size=16,face="bold"),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_text(face="bold"),
+        axis.title=element_text(size=12,face="bold"),
+        strip.text.y = element_text(hjust=0,vjust = 1,angle=180,face="bold"))+
+    coord_flip()
+p
+```
