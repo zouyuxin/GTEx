@@ -540,10 +540,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree479e0939f4c695dde043a19df9ee3a70c93367eatargetblank479e093a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/479e0939f4c695dde043a19df9ee3a70c93367ea" target="_blank">479e093</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree8b44d2f846effec4c24eff4e42f5540bbb6706b0targetblank8b44d2fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/8b44d2f846effec4c24eff4e42f5540bbb6706b0" target="_blank">8b44d2f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree479e0939f4c695dde043a19df9ee3a70c93367eatargetblank479e093a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree8b44d2f846effec4c24eff4e42f5540bbb6706b0targetblank8b44d2fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -552,7 +552,6 @@ Great! You are using Git for version control. Tracking code development and conn
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    dsc-mash-gtex/
 
 Untracked files:
@@ -617,6 +616,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/zouyuxin/GTEx/blob/8b44d2f846effec4c24eff4e42f5540bbb6706b0/analysis/SexDEPlots.Rmd" target="_blank">8b44d2f</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+<td>
+wflow_publish(“analysis/SexDEPlots.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/SexDEPlots.html" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/479e0939f4c695dde043a19df9ee3a70c93367ea/analysis/SexDEPlots.Rmd" target="_blank">479e093</a>
 </td>
 <td>
@@ -636,24 +669,13 @@ wflow_publish(“analysis/SexDEPlots.Rmd”)
 </div>
 </div>
 </div>
-<pre class="r"><code>library(mashr)</code></pre>
-<pre><code>Loading required package: ashr</code></pre>
-<pre class="r"><code>library(knitr)
+<pre class="r"><code>library(mashr)
+library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(gridExtra)
-library(tidyverse)</code></pre>
-<pre><code>── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>✔ tibble  2.1.1     ✔ purrr   0.3.2
-✔ tidyr   0.8.3     ✔ dplyr   0.8.1
-✔ readr   1.3.1     ✔ stringr 1.4.0
-✔ tibble  2.1.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::combine()    masks gridExtra::combine()
-✖ dplyr::filter()     masks stats::filter()
-✖ dplyr::group_rows() masks kableExtra::group_rows()
-✖ dplyr::lag()        masks stats::lag()</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
+library(tidyverse)
+library(dplyr)</code></pre>
 <pre class="r"><code>m_mle_EZ = readRDS(&#39;output/sexde/sexde.EZ.FL_PC3.V_mle.mash_model.rds&#39;)
 m_mle_EZ$result = readRDS(&#39;output/sexde/sexde.EZ.FL_PC3.V_mle.posterior.random.rds&#39;)
 m_mle_EZ_mean = readRDS(&#39;output/sexde/sexde.EZ.FL_PC3.V_mle.mash_model.rds&#39;)
@@ -701,6 +723,43 @@ num = table(rowSums(sig))
 num = num[-1]
 barplot(num, las=2, cex.names=0.7, ylab=&#39;number of genes&#39;, xlab=&#39;number of tissues&#39;)</code></pre>
 <p><img src="figure/SexDEPlots.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/figure/SexDEPlots.Rmd/unnamed-chunk-4-1.png" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plot-2" class="section level2">
 <h2>Plot 2</h2>
@@ -725,6 +784,43 @@ data$position &lt;- ifelse(data$chr %in% c(&#39;chrX&#39;, &#39;chrY&#39;), &#39
   theme_bw(base_size = 12) + theme(legend.position = &quot;bottom&quot;)
 p</code></pre>
 <p><img src="figure/SexDEPlots.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/figure/SexDEPlots.Rmd/unnamed-chunk-7-1.png" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Volcano Plot using max effect size:</p>
 <pre class="r"><code>a = apply(abs(m_mle_EZ$result$PosteriorMean), 1, which.max)
 beta = sapply(1:nrow(m_mle_EZ$result$PosteriorMean), function(i) m_mle_EZ$result$PosteriorMean[i, a[i]])
@@ -745,6 +841,43 @@ data$position &lt;- ifelse(data$chr %in% c(&#39;chrX&#39;, &#39;chrY&#39;), &#39
   theme_bw(base_size = 12) + theme(legend.position = &quot;bottom&quot;)
 p</code></pre>
 <p><img src="figure/SexDEPlots.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/figure/SexDEPlots.Rmd/unnamed-chunk-9-1.png" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plot-3" class="section level2">
 <h2>Plot 3</h2>
@@ -774,6 +907,43 @@ p = ggplot(data=data,
     coord_flip()
 p</code></pre>
 <p><img src="figure/SexDEPlots.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+Past versions of unnamed-chunk-10-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/figure/SexDEPlots.Rmd/unnamed-chunk-10-1.png" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Forest Plot using max effect size:</p>
 <pre class="r"><code>a = apply(abs(m_mle_EZ$result$PosteriorMean), 1, which.max)
 beta = sapply(1:nrow(m_mle_EZ$result$PosteriorMean), function(i) m_mle_EZ$result$PosteriorMean[i, a[i]])
@@ -804,6 +974,43 @@ p = ggplot(data=data,
     coord_flip()
 p</code></pre>
 <p><img src="figure/SexDEPlots.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/d30ab3ba23908cd9f391d3e070257b78a8a330a6/docs/figure/SexDEPlots.Rmd/unnamed-chunk-11-1.png" target="_blank">d30ab3b</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
