@@ -13,3 +13,5 @@ output:
 * [CorShrink eQTL](CorShrinkEQTL.html)
 
 * [GTEx Sex Differential expressed](SexDEpipeline.html)
+
+* [GTEx Sex Differential expressed Plots](SexDEPlots.html)
