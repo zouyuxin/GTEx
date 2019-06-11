@@ -15,6 +15,7 @@ library(ggplot2)
 library(gridExtra)
 library(tidyverse)
 library(dplyr)
+library(ggrepel)
 ```
 
 ```{r}
@@ -45,7 +46,7 @@ Barplot for number of tissues shared by significance:
 sig = m_mle_EZ$result$lfsr < sig_thresh
 num = table(rowSums(sig))
 num = num[-1]
-barplot(num, las=2, cex.names=0.7, ylab='number of genes', xlab='number of tissues')
+barplot(log10(num), las=2, cex.names=0.7, ylab='number of genes (log10)', xlab='number of tissues')
 ```
 
 ## Plot 2
@@ -53,8 +54,9 @@ barplot(num, las=2, cex.names=0.7, ylab='number of genes', xlab='number of tissu
 ```{r}
 load('data/sexde/color_abb_codes.Robj')
 geno = read.delim('data/sexde/genetypes.txt', header = FALSE)
+geno$HUGO = gsub('.*.*_', '', geno$V2)
 geno$V2 = gsub("_.*$", "", geno$V2)
-colnames(geno) = c('chr', 'GENE', 'V3')
+colnames(geno) = c('chr', 'GENE', 'V3', 'HUGO')
 geno=geno %>% distinct(GENE, .keep_all = TRUE)
 ```
 
@@ -90,15 +92,23 @@ data$lfsr[data$lfsr < 0] = 0
 data = inner_join(data, geno, by='GENE')
 data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
 data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+
+## Create a column to indicate which genes to label
+data$genelabels <- ""
+idx1 = which(data$lfsr<1e-8)
+idx2 = which((nrow(data)+1 - rank(abs(data$PosteriorMean))) <= 20)
+idx = intersect(idx1, idx2)
+data$genelabels[idx] <- TRUE
 ```
 
 ```{r}
 p = ggplot(data, aes(x = PosteriorMean, y = -log10(lfsr+1e-8))) +
-  geom_point(aes(color = Significant, size = sharing, shape=position)) + xlim(-12, 12) + 
+  geom_point(aes(color = Significant, size = sharing, shape=position)) + xlim(-12, 12) + ylim(0,8.5) +
   scale_color_manual(values = c("red", "grey")) +
   geom_errorbarh(aes(xmin=PosteriorMean-2*PosteriorSD, xmax=PosteriorMean+2*PosteriorSD, color = Significant),cex=0.5)+ 
   ylab('-log10(lfsr)') + xlab('effect size') + 
-  theme_bw(base_size = 12) + theme(legend.position = "bottom")
+  theme_bw(base_size = 12) + theme(legend.position = "bottom") + 
+  geom_text_repel(aes(label = ifelse(genelabels == T, HUGO,"")))
 p
 ```
 
@@ -145,6 +155,14 @@ data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal'
 data = data %>% arrange(desc(lfsr))
 data$GENE = factor(data$GENE, levels = data$GENE)
 
+## Create a column to indicate which genes to label
+data$genelabels <- ""
+idx1 = which(data$lfsr<1e-8)
+idx2 = which((nrow(data)+1 - rank(abs(data$PosteriorMean))) <= 20)
+idx = intersect(idx1, idx2)
+data$genelabels[idx] <- TRUE
+```
+```{r}
 p = ggplot(data=data,
     aes(x = GENE,y = PosteriorMean))+
     geom_point(aes(shape=position, size=sharing))+
@@ -157,6 +175,28 @@ p = ggplot(data=data,
         axis.text.x=element_text(face="bold"),
         axis.title=element_text(size=12,face="bold"),
         strip.text.y = element_text(hjust=0,vjust = 1,angle=180,face="bold"))+
-    coord_flip()
+    coord_flip() + 
+  geom_text_repel(aes(label = ifelse(genelabels == T, HUGO,"")))
+p
+```
+
+## Plot 4
+```{r}
+a = apply(abs(m_mle_EZ$result$PosteriorMean), 1, which.max)
+beta = sapply(1:nrow(m_mle_EZ$result$PosteriorMean), function(i) m_mle_EZ$result$PosteriorMean[i, a[i]])
+se = sapply(1:nrow(m_mle_EZ$result$PosteriorSD), function(i) m_mle_EZ$result$PosteriorSD[i, a[i]])
+lfsr = sapply(1:nrow(m_mle_EZ$result$lfsr), function(i) m_mle_EZ$result$lfsr[i, a[i]])
+data = data.frame(GENE = rownames(m_mle_EZ$result$PosteriorMean), PosteriorMean = beta, PosteriorSD = se, lfsr = lfsr, sharing = rowSums(sig))
+data$lfsr[data$lfsr < 0] = 0
+data = inner_join(data, geno, by='GENE')
+data$Significant <- ifelse(data$lfsr < sig_thresh, "lfsr < 0.01", "Not Sig")
+data$position <- ifelse(data$chr %in% c('chrX', 'chrY'), 'x-linked', 'autosomal')
+```
+
+```{r}
+p = ggplot(data=data,
+    aes(x = position,y = PosteriorMean)) +
+    geom_violin() + geom_boxplot(width=0.1) + 
+    ylab('effect size')
 p
 ```
