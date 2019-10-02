@@ -13,7 +13,7 @@
 
 <meta name="date" content="2018-12-20" />
 
-<title>GTEx V6</title>
+<title>GTEx V6 using pipeline</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,9 +78,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -198,8 +196,6 @@ $(document).ready(function () {
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -355,8 +351,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -365,6 +359,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -431,212 +435,358 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">GTEx V6</h1>
-<h4 class="author"><em>Yuxin Zou</em></h4>
-<h4 class="date"><em>2018-12-20</em></h4>
+<h1 class="title toc-ignore">GTEx V6 using pipeline</h1>
+<h4 class="author">Yuxin Zou</h4>
+<h4 class="date">2018-12-20</h4>
 
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-02-08</p>
-<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
-<ul>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-02
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>GTEx/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20181220)</code> </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20181220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20181220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20181220code" class="panel-collapse collapse">
+<div class="panel-body">
 <p>The command <code>set.seed(20181220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/77b789dea4ecf9f8890622950bd28bafd7abcfce" target="_blank">77b789d</a> </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree0526bcb7bdefdd415b57ee42a85851e22cebe43ftargetblank0526bcba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/0526bcb7bdefdd415b57ee42a85851e22cebe43f" target="_blank">0526bcb</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree0526bcb7bdefdd415b57ee42a85851e22cebe43ftargetblank0526bcba" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    dsc-mash-gtex/
 
 Untracked files:
     Untracked:  .DS_Store
+    Untracked:  analysis/.DS_Store
     Untracked:  code/Demo_SumstatQuery.R
+    Untracked:  code/SexDE.TAU.R
+    Untracked:  code/SexDE_get_genes.R
     Untracked:  data/.DS_Store
     Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
     Untracked:  data/gene_names_GTEX_V6.txt
     Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
     Untracked:  data/order_index.rda
     Untracked:  data/samples_id.txt
+    Untracked:  data/sexde/
     Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
     Untracked:  output/.DS_Store
     Untracked:  output/GTExV6/
     Untracked:  output/GTExV6pipeline/
     Untracked:  output/corshrink_noise_gene_1.rds
+    Untracked:  output/sexde/
+
+Unstaged changes:
+    Modified:   analysis/SexDEPlots.Rmd
 
 </code></pre>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
-</li>
-</ul>
-<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
-<ul>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 File
 </th>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
-<th style="text-align:left;">
+<th>
 Message
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/77b789dea4ecf9f8890622950bd28bafd7abcfce/analysis/GTExV6pipeline.Rmd" target="_blank">77b789d</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/0526bcb7bdefdd415b57ee42a85851e22cebe43f/analysis/GTExV6pipeline.Rmd" target="_blank">0526bcb</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-10-02
+</td>
+<td>
+wflow_publish(“analysis/GTExV6pipeline.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/GTExV6pipeline.html" target="_blank">933fc27</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-02-08
 </td>
-<td style="text-align:left;">
-wflow_publish(“analysis/GTExV6pipeline.Rmd”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-html
-</td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/58e443e8107f5403ef76edaa825dd6ce2df40ff3/docs/GTExV6pipeline.html" target="_blank">58e443e</a>
-</td>
-<td style="text-align:left;">
-zouyuxin
-</td>
-<td style="text-align:left;">
-2019-01-29
-</td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/77b789dea4ecf9f8890622950bd28bafd7abcfce/analysis/GTExV6pipeline.Rmd" target="_blank">77b789d</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-02-08
+</td>
+<td>
+wflow_publish(“analysis/GTExV6pipeline.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/58e443e8107f5403ef76edaa825dd6ce2df40ff3/docs/GTExV6pipeline.html" target="_blank">58e443e</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-01-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/8607dea321765299455d7b42b59e9dfbb565e7d6/analysis/GTExV6pipeline.Rmd" target="_blank">8607dea</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-29
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/GTExV6pipeline.Rmd”)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/5d17b161acdd4891b30de20d26038e337168a9cf/docs/GTExV6pipeline.html" target="_blank">5d17b16</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/5d17b161acdd4891b30de20d26038e337168a9cf/docs/GTExV6pipeline.html" target="_blank">5d17b16</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-29
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/cadbb28a096bfddfa4bd17ed47adaba091668333/analysis/GTExV6pipeline.Rmd" target="_blank">cadbb28</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-29
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/GTExV6pipeline.Rmd”)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/zouyuxin/GTEx/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/GTExV6pipeline.html" target="_blank">02da57c</a>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/GTExV6pipeline.html" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/378989c815a297d30113a6a418841e7d5e047668/analysis/GTExV6pipeline.Rmd" target="_blank">378989c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
-<td style="text-align:left;">
+<td>
 wflow_publish(“analysis/GTExV6pipeline.Rmd”)
 </td>
 </tr>
 </tbody>
 </table>
-</ul>
-<p></details></p>
-<hr />
+</div>
+<hr>
+</div>
+</div>
+</div>
 <pre class="r"><code>library(mashr)</code></pre>
 <pre><code>Loading required package: ashr</code></pre>
 <pre class="r"><code>library(knitr)
@@ -648,7 +798,7 @@ missing.tissues &lt;- c(7, 8, 19, 20, 24, 25, 31, 34, 37)
 gtex.colors &lt;- read.table(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE&quot;, sep = &#39;\t&#39;, comment.char = &#39;&#39;)[-missing.tissues, 2]
 gtex.colors &lt;- as.character(gtex.colors)
 gene.names = as.character(read.table(&#39;data/gene_names.txt&#39;)[,1])</code></pre>
-<p>The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from <code>flash</code>.</p>
+<p>The results are from <a href="pipeline/mashr_flashr_workflow.ipynb">mashr_flashr_pipeline</a>. We include the data driven covariance matrices based on the first three principal components and factors from <code>flash</code>.</p>
 <div id="flash-model-based-on-effects" class="section level2">
 <h2>Flash model based on effects:</h2>
 <pre class="r"><code>factors = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.flash.model.rds&#39;)$factors
@@ -657,96 +807,119 @@ for(k in 1:13){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EE factors plot-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EE-factors-plot-1">
+Past versions of “flash EE factors plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EE-factors-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EE factors plot-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EE-factors-plot-2">
+Past versions of “flash EE factors plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EE-factors-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-2.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EE factors plot-3.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EE-factors-plot-3">
+Past versions of “flash EE factors plot-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EE-factors-plot-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EE factors plot-3.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 </div>
 <div id="flash-model-based-on-z-scores" class="section level2">
 <h2>Flash model based on z scores:</h2>
@@ -756,96 +929,119 @@ for(k in 1:18){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EZ factors plot-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EZ-factors-plot-1">
+Past versions of “flash EZ factors plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EZ-factors-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EZ factors plot-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EZ-factors-plot-2">
+Past versions of “flash EZ factors plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EZ-factors-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-2.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of flash EZ factors plot-3.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/GTExV6pipeline.Rmd/flash%20EZ%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EZ-factors-plot-3">
+Past versions of “flash EZ factors plot-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-flash-EZ-factors-plot-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/flash EZ factors plot-3.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code># read model
 m_simple_EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.rds&#39;)
 m_simple_EE$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.mash_model_V_simple.posterior.rds&#39;)
@@ -878,107 +1074,134 @@ m_Vgene_EZ_simple$result = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats
 <pre class="r"><code>V.simple = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_simple.rds&#39;)
 corrplot::corrplot(V.simple, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;Simple&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-1.png" width="768" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of V-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-V-1">
+Past versions of V-1.png
+</button>
+</p>
+<div id="fig-V-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code># dev.off()
 
 V.mle.EE = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EE.FL_PC3.V_mle.rds&#39;)
 corrplot::corrplot(V.mle.EE, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EE&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-2.png" width="768" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of V-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-V-2">
+Past versions of V-2.png
+</button>
+</p>
+<div id="fig-V-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-2.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>V.mle.EZ = readRDS(&#39;output/GTExV6pipeline/MatrixEQTLSumStats.Portable.Z.EZ.FL_PC3.V_mle.rds&#39;)
 corrplot::corrplot(V.mle.EZ, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.5, diag = FALSE, col=colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(200), cl.lim = c(-1,1), title = &#39;MLE EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/V-3.png" width="768" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of V-3.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-V-3">
+Past versions of V-3.png
+</button>
+</p>
+<div id="fig-V-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/V-3.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
+<ul>
+<li><p><code>Vgene Kushal</code> uses gene-specific correlation matrices, the results are from Kushal’s paper (<code>CorShrink</code> on z score matrix for each gene, which include signals).</p></li>
+<li><p><code>Vgene simple</code> uses gene-specific correlation matrices, the correlation matrix for each gene is the correlation of z scores close to null.</p></li>
+<li><p><code>Vgene simple corshrink</code> uses gene-specific correlation matrix, the correlation matrix for each gene is the <code>CorShrink</code> result using <code>Vgene simple</code>.</p></li>
+</ul>
+<p>Log likelihoods:</p>
 <pre class="r"><code>logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_simple), get_loglik(m_Vgene_EE_simple_corshrink))
 logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_simple), get_loglik(m_Vgene_EZ_simple_corshrink))
 tmp = cbind(logliks, logliks_EZ)
@@ -1056,154 +1279,253 @@ Vgene simple corshrink
 </tr>
 </tbody>
 </table>
+<p>Estimated prior weights:ß</p>
 <pre class="r"><code>par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = &#39;Simple EE&#39;)
 barplot(get_estimated_pi(m_mle_EE), las=2, cex.names = 0.7, main = &#39;MLE EE&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-1.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-weights-1">
+Past versions of “plot weights-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-weights-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/plot weights-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EE_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EE Kushal&#39;)
 barplot(get_estimated_pi(m_Vgene_EE_simple), las=2, cex.names = 0.7, main = &#39;V gene specific EE simple&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-2.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-weights-2">
+Past versions of “plot weights-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-weights-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-2.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/plot weights-2.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-2.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/plot weights-2.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EE_simple_corshrink), las=2, cex.names = 0.7, main = &#39;V gene specific EE simple corshrink&#39;)
 
 barplot(get_estimated_pi(m_simple_EZ), las=2, cex.names = 0.7, main = &#39;Simple EZ&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-3.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-3.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-weights-3">
+Past versions of “plot weights-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-weights-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-3.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/plot weights-3.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-3.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>barplot(get_estimated_pi(m_mle_EZ), las=2, cex.names = 0.7, main = &#39;MLE EZ&#39;)
 barplot(get_estimated_pi(m_Vgene_EZ_kushal), las=2, cex.names = 0.7, main = &#39;V gene specific EZ Kushal&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-4.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of plot weights-4.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-weights-4">
+Past versions of “plot weights-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-weights-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-4.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/plot weights-4.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/plot weights-4.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>barplot(get_estimated_pi(m_Vgene_EZ_simple), las=2, cex.names = 0.7, main = &#39;V gene specific EZ simple&#39;)
 barplot(get_estimated_pi(m_Vgene_EZ_simple_corshrink), las=2, cex.names = 0.7, main = &#39;V gene specific EZ simple corshrink&#39;)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/plot%20weights-5.png" width="1920" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-weights-5">
+Past versions of “plot weights-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-weights-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/plot weights-5.png" target="_blank">933fc27</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-02-08
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Number of significant:</p>
 <pre class="r"><code>numsig_EE = c(length(get_significant_results(m_simple_EE)), 
               length(get_significant_results(m_mle_EE)), 
@@ -1347,47 +1669,65 @@ p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) +
 
 grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
+Past versions of unnamed-chunk-3-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-3-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <p>The gene <code>MCPH1</code>:</p>
 <pre class="r"><code>ind = 13837
 stronggene = data.frame(gtex$strong.b[13837,])
@@ -1446,47 +1786,65 @@ p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) +
 
 grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-4-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <p>The gene significant in <code>V gene specific EZ (simple corshrink) tissuewide</code>, not in <code>mle EZ</code>:</p>
 <pre class="r"><code>ind = setdiff(get_significant_results(m_Vgene_EZ_simple_corshrink), get_significant_results(m_mle_EZ))[10]
 stronggene = data.frame(gtex$strong.b[ind,])
@@ -1545,47 +1903,65 @@ p6 = ggplot(stronggeneVgeneSimpleCor, aes(y = EffectSize, x = Group)) +
 
 grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" width="1920" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/02da57c4d6102d1423cd19cfd09dd146a86bc190/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-5-1.png" target="_blank">02da57c</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-27
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <p>The pairwise sharing by magnitude</p>
 <pre class="r"><code>par(mfrow = c(1,2))
 clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
@@ -1601,47 +1977,54 @@ colnames(x) &lt;- colnames(get_lfsr(m_mle_EZ))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;MLE EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" width="2880" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/58e443e8107f5403ef76edaa825dd6ce2df40ff3/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" target="_blank">58e443e</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-29
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-6-1.png" target="_blank">5d17b16</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
 2019-01-29
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>par(mfrow = c(1,2))
 clrs=colorRampPalette(rev(c(&#39;darkred&#39;, &#39;red&#39;,&#39;orange&#39;,&#39;yellow&#39;,&#39;cadetblue1&#39;, &#39;cyan&#39;, &#39;dodgerblue4&#39;, &#39;blue&#39;,&#39;darkorchid1&#39;,&#39;lightgreen&#39;,&#39;green&#39;, &#39;forestgreen&#39;,&#39;darkolivegreen&#39;)))(200)
 
@@ -1656,48 +2039,107 @@ colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_simple))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific simple EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" width="2880" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of unnamed-chunk-7-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" target="_blank">5d17b16</a>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" target="_blank">933fc27</a>
 </td>
-<td style="text-align:left;">
+<td>
 zouyuxin
 </td>
-<td style="text-align:left;">
+<td>
+2019-02-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/5d17b161acdd4891b30de20d26038e337168a9cf/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-7-1.png" target="_blank">5d17b16</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
 2019-01-29
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>x           &lt;- get_pairwise_sharing(m_Vgene_EZ_simple_corshrink)
 colnames(x) &lt;- colnames(get_lfsr(m_Vgene_EZ_simple_corshrink))
 rownames(x) &lt;- colnames(x)
 corrplot::corrplot(x, method=&#39;color&#39;, type=&#39;upper&#39;, tl.col=&quot;black&quot;, tl.srt=45, tl.cex = 0.7, diag = FALSE, col=clrs, cl.lim = c(0,1), title = &#39;V gene specific simple corshrink EZ&#39;, mar=c(0,0,5,0))</code></pre>
 <p><img src="figure/GTExV6pipeline.Rmd/unnamed-chunk-7-2.png" width="2880" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-2">
+Past versions of unnamed-chunk-7-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/933fc27c939c8fc12cc875b4c54b407e89935bb2/docs/figure/GTExV6pipeline.Rmd/unnamed-chunk-7-2.png" target="_blank">933fc27</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2019-02-08
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.5.1 (2018-07-02)
+<pre><code>R version 3.5.3 (2019-03-11)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS  10.14.2
+Running under: macOS Mojave 10.14.6
 
 Matrix products: default
 BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -1710,33 +2152,34 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] gridExtra_2.3     ggplot2_3.1.0     kableExtra_1.0.1  knitr_1.20       
-[5] mashr_0.2.19.0555 ashr_2.2-26      
+[1] gridExtra_2.3     ggplot2_3.2.0     kableExtra_1.1.0  knitr_1.23       
+[5] mashr_0.2.21.0641 ashr_2.2-38      
 
 loaded via a namespace (and not attached):
- [1] tidyselect_0.2.5  corrplot_0.84     purrr_0.2.5      
- [4] lattice_0.20-38   colorspace_1.4-0  htmltools_0.3.6  
- [7] viridisLite_0.3.0 yaml_2.2.0        rlang_0.3.1      
-[10] R.oo_1.22.0       mixsqp_0.1-93     pillar_1.3.1     
-[13] withr_2.1.2       glue_1.3.0        R.utils_2.7.0    
-[16] bindrcpp_0.2.2    bindr_0.1.1       foreach_1.4.4    
-[19] plyr_1.8.4        stringr_1.3.1     munsell_0.5.0    
-[22] gtable_0.2.0      workflowr_1.1.1   rvest_0.3.2      
-[25] R.methodsS3_1.7.1 mvtnorm_1.0-8     codetools_0.2-16 
-[28] evaluate_0.12     labeling_0.3      pscl_1.5.2       
-[31] doParallel_1.0.14 parallel_3.5.1    highr_0.7        
-[34] Rcpp_1.0.0        readr_1.3.1       backports_1.1.3  
-[37] scales_1.0.0      rmeta_3.0         webshot_0.5.1    
-[40] truncnorm_1.0-8   abind_1.4-5       hms_0.4.2        
-[43] digest_0.6.18     stringi_1.2.4     dplyr_0.7.8      
-[46] grid_3.5.1        rprojroot_1.3-2   tools_3.5.1      
-[49] magrittr_1.5      lazyeval_0.2.1    tibble_2.0.1     
-[52] crayon_1.3.4      whisker_0.3-2     pkgconfig_2.0.2  
-[55] MASS_7.3-51.1     Matrix_1.2-15     SQUAREM_2017.10-1
-[58] xml2_1.2.0        assertthat_0.2.0  rmarkdown_1.11   
-[61] httr_1.4.0        rstudioapi_0.9.0  iterators_1.0.10 
-[64] R6_2.3.0          git2r_0.24.0      compiler_3.5.1   </code></pre>
+ [1] tidyselect_0.2.5  xfun_0.7          corrplot_0.84    
+ [4] purrr_0.3.2       lattice_0.20-38   colorspace_1.4-1 
+ [7] htmltools_0.3.6   viridisLite_0.3.0 yaml_2.2.0       
+[10] rlang_0.4.0       mixsqp_0.1-119    pillar_1.4.2     
+[13] withr_2.1.2       glue_1.3.1        foreach_1.4.4    
+[16] plyr_1.8.4        stringr_1.4.0     munsell_0.5.0    
+[19] gtable_0.3.0      workflowr_1.4.0   rvest_0.3.4      
+[22] mvtnorm_1.0-10    codetools_0.2-16  evaluate_0.13    
+[25] labeling_0.3      pscl_1.5.2        doParallel_1.0.14
+[28] parallel_3.5.3    highr_0.8         Rcpp_1.0.1       
+[31] readr_1.3.1       backports_1.1.4   scales_1.0.0     
+[34] rmeta_3.0         webshot_0.5.1     truncnorm_1.0-8  
+[37] abind_1.4-5       fs_1.3.1          hms_0.4.2        
+[40] digest_0.6.19     stringi_1.4.3     dplyr_0.8.1      
+[43] grid_3.5.3        rprojroot_1.3-2   tools_3.5.3      
+[46] magrittr_1.5      lazyeval_0.2.2    tibble_2.1.3     
+[49] crayon_1.3.4      whisker_0.3-2     pkgconfig_2.0.2  
+[52] MASS_7.3-51.1     Matrix_1.2-15     SQUAREM_2017.10-1
+[55] xml2_1.2.0        assertthat_0.2.1  rmarkdown_1.13   
+[58] httr_1.4.0        rstudioapi_0.10   iterators_1.0.10 
+[61] R6_2.4.0          git2r_0.25.2      compiler_3.5.3   </code></pre>
 </div>
+</div>
+
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
@@ -1749,14 +2192,6 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
-
-<hr>
-<p>
-  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-  analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
-</p>
-<hr>
 
 
 </div>
