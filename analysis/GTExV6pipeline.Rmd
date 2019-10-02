@@ -1,5 +1,5 @@
 ---
-title: "GTEx V6"
+title: "GTEx V6 using pipeline"
 author: "Yuxin Zou"
 date: 2018-12-20
 output:
@@ -23,7 +23,7 @@ gtex.colors <- as.character(gtex.colors)
 gene.names = as.character(read.table('data/gene_names.txt')[,1])
 ```
 
-The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from `flash`.
+The results are from [mashr_flashr_pipeline](pipeline/mashr_flashr_workflow.ipynb). We include the data driven covariance matrices based on the first three principal components and factors from `flash`.
 
 ## Flash model based on effects:
 
@@ -90,6 +90,13 @@ corrplot::corrplot(V.mle.EZ, method='color', type='upper', tl.col="black", tl.sr
 
 ## Results
 
+* `Vgene Kushal` uses gene-specific correlation matrices, the results are from Kushal's paper (`CorShrink` on z score matrix for each gene, which include signals).
+
+* `Vgene simple` uses gene-specific correlation matrices, the correlation matrix for each gene is the correlation of z scores close to null.
+
+* `Vgene simple corshrink` uses gene-specific correlation matrix, the correlation matrix for each gene is the `CorShrink` result using `Vgene simple`.
+
+Log likelihoods:
 ```{r loglikelihood}
 logliks = c(get_loglik(m_simple_EE), get_loglik(m_mle_EE), get_loglik(m_Vgene_EE_kushal), get_loglik(m_Vgene_EE_simple), get_loglik(m_Vgene_EE_simple_corshrink))
 logliks_EZ = c(get_loglik(m_simple_EZ), get_loglik(m_mle_EZ), get_loglik(m_Vgene_EZ_kushal), get_loglik(m_Vgene_EZ_simple), get_loglik(m_Vgene_EZ_simple_corshrink))
@@ -99,6 +106,7 @@ colnames(tmp) = c('EE', 'EZ')
 tmp %>% kable() %>% kable_styling()
 ```
 
+Estimated prior weights:ß
 ```{r plot weights, fig.align='center', fig.height=5,fig.width=20}
 par(mfrow=c(1,2))
 barplot(get_estimated_pi(m_simple_EE), las=2, cex.names = 0.7, main = 'Simple EE')
