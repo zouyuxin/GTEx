@@ -1,5 +1,7 @@
 # GTEx mash pipeline
 
+The updated mashr_flashr_workflow.ipynb is [here](https://github.com/stephenslab/gtexresults/blob/master/workflows/mashr_flashr_workflow.ipynb).
+
 Set some bash variables,
 
 ```bash
