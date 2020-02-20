@@ -462,7 +462,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-15
+<strong>Last updated:</strong> 2020-02-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -553,10 +553,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree95942644f7467370bec2331d478e11784fd8855etargetblank9594264a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/95942644f7467370bec2331d478e11784fd8855e" target="_blank">9594264</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtreebde0c5eea83eda1de5650e908e9558d2d4d08d98targetblankbde0c5ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/zouyuxin/GTEx/tree/bde0c5eea83eda1de5650e908e9558d2d4d08d98" target="_blank">bde0c5e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtree95942644f7467370bec2331d478e11784fd8855etargetblank9594264a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomzouyuxinGTExtreebde0c5eea83eda1de5650e908e9558d2d4d08d98targetblankbde0c5ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -574,13 +574,13 @@ Untracked files:
     Untracked:  code/SexDE.TAU.R
     Untracked:  code/SexDE_get_genes.R
     Untracked:  data/.DS_Store
+    Untracked:  data/color_abb_codes.Robj
     Untracked:  data/cor_tissues_non_ash_voom_pearson.rda
     Untracked:  data/gene_names_GTEX_V6.txt
     Untracked:  data/genewide_ash_out_tissue_mat_halfuniform_non_mode.rda
     Untracked:  data/meta.ivw.sexde_logfc_matrix.sexde.svs.allgenes.v8.FINAL.txt
     Untracked:  data/order_index.rda
     Untracked:  data/samples_id.txt
-    Untracked:  data/sexde.data.rds
     Untracked:  data/sexde/
     Untracked:  data/tissuewide_pearson_halfuniform_tissuewide_non_mode.rda
     Untracked:  output/.DS_Store
@@ -593,6 +593,7 @@ Untracked files:
 
 Unstaged changes:
     Modified:   analysis/SexDEPlots.Rmd
+    Modified:   analysis/SexDEpipeline.Rmd
 
 </code></pre>
 <p>
@@ -631,6 +632,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zouyuxin/GTEx/blob/bde0c5eea83eda1de5650e908e9558d2d4d08d98/analysis/SexDEpipeline.final.Rmd" target="_blank">bde0c5e</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+wflow_publish(“analysis/SexDEpipeline.final.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zouyuxin/GTEx/7d4d6e3544cccc25500251d693a1be36612dec2a/docs/SexDEpipeline.final.html" target="_blank">7d4d6e3</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2020-01-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -695,17 +730,20 @@ wflow_publish(“analysis/SexDEpipeline.final.Rmd”)
 library(kableExtra)
 library(ggplot2)
 library(gridExtra)</code></pre>
-<pre class="r"><code>sexde &lt;- readRDS(&#39;data/sexde.data.rds&#39;)
+<pre class="r"><code>sexde &lt;- readRDS(&#39;data/sexde/sexde.data.rds&#39;)
 
-missing.tissues &lt;- c(7, 24, 25, 31, 40, 43, 49, 51, 52)
-gtex.colors &lt;- read.table(&quot;https://github.com/stephenslab/gtexresults/blob/master/data/GTExColors.txt?raw=TRUE&quot;, sep = &#39;\t&#39;, comment.char = &#39;&#39;)[-missing.tissues, 2]
-gtex.colors &lt;- as.character(gtex.colors)</code></pre>
+load(&quot;data/color_abb_codes.Robj&quot;)
+
+# Tissue color palette
+color_code$Tissue[18] = &#39;Brain_Spinal_cord_cervical_c.1&#39;
+color_code$Tissue[22] = &#39;Cells_EBV.transformed_lymphocytes&#39;
+gtex.colors &lt;- color_code$color</code></pre>
 <p>The results are from mashr_flashr_pipeline. We include the data driven covariance matrices based on the first three principal components and factors from <code>flash</code>.</p>
 <div id="flash-model-based-on-effects" class="section level2">
 <h2>Flash model based on effects:</h2>
 <pre class="r"><code>factors = readRDS(&#39;output/sexde.final/outputEE/sexde.data.EE.flash.model.rds&#39;)$factors
 par(mfrow = c(2, 3))
-for(k in 1:13){
+for(k in 1:10){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
 <p><img src="figure/SexDEpipeline.final.Rmd/flash%20EE%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -784,50 +822,12 @@ zouyuxin
 </table>
 </div>
 </div>
-<p><img src="figure/SexDEpipeline.final.Rmd/flash%20EE%20factors%20plot-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-flash-EE-factors-plot-3">
-Past versions of “flash EE factors plot-3.png”
-</button>
-</p>
-<div id="fig-no-spaces-flash-EE-factors-plot-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/zouyuxin/GTEx/blob/9694106b7c46246ebd7693650b389dfe26cebf43/docs/figure/SexDEpipeline.final.Rmd/flash EE factors plot-3.png" target="_blank">9694106</a>
-</td>
-<td>
-zouyuxin
-</td>
-<td>
-2020-01-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="flash-model-based-on-z-scores" class="section level2">
 <h2>Flash model based on z scores:</h2>
 <pre class="r"><code>factors = readRDS(&#39;output/sexde.final/outputEZ/sexde.data.EZ.flash.model.rds&#39;)$factors
 par(mfrow = c(2, 3))
-for(k in 1:17){
+for(k in 1:20){
   barplot(factors[,k], col=gtex.colors, names.arg = FALSE, axes = FALSE, main=paste0(&quot;Factor &quot;, k))
 }</code></pre>
 <p><img src="figure/SexDEpipeline.final.Rmd/flash%20EZ%20factors%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -944,6 +944,7 @@ zouyuxin
 </table>
 </div>
 </div>
+<p><img src="figure/SexDEpipeline.final.Rmd/flash%20EZ%20factors%20plot-4.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># read model
 m_mle_EE = readRDS(&#39;output/sexde.final/outputEE/sexde.ee.fl_pc3.v_mle.mash_model.rds&#39;)
 m_mle_EZ = readRDS(&#39;output/sexde.final/outputEZ/sexde.ez.fl_pc3.v_mle.mash_model.rds&#39;)</code></pre>
@@ -1058,10 +1059,10 @@ EZ
 MLE
 </td>
 <td style="text-align:right;">
-1706731
+-5797557
 </td>
 <td style="text-align:right;">
-1719887
+-5787241
 </td>
 </tr>
 </tbody>
@@ -1134,10 +1135,10 @@ EZ
 MLE
 </td>
 <td style="text-align:right;">
-17391
+15027
 </td>
 <td style="text-align:right;">
-19556
+15984
 </td>
 </tr>
 </tbody>
@@ -1193,12 +1194,12 @@ zouyuxin
 </table>
 </div>
 </div>
-<pre class="r"><code>meta_result = read.table(&#39;data/meta.ivw.sexde_logfc_matrix.sexde.svs.allgenes.v8.FINAL.txt&#39;, header = TRUE)
+<pre class="r"><code>meta_result = read.table(&#39;data/sexde/meta.ivw.sexde_logfc_matrix.v8.MASH.txt&#39;, header = TRUE)
 meta_gene = as.character(meta_result$gene[meta_result$padj &lt; 0.05])
 meta_gene = sapply(strsplit(meta_gene, &#39;_&#39;, fixed = TRUE), function(x) x[1])
 length(intersect(meta_gene, names(get_significant_results(m_mle_EZ))))</code></pre>
-<pre><code>[1] 9707</code></pre>
-<p>There are 11212 significant genes from meta analysis, 9707 of them are significant in mash model (EZ) as well.</p>
+<pre><code>[1] 8572</code></pre>
+<p>There are 9405 significant genes from meta analysis, 8572 of them are significant in mash model (EZ) as well.</p>
 <p>The gene significant in meta analysis, not in <code>MLE EZ</code>:</p>
 <pre class="r"><code>ind.name = setdiff(meta_gene, names(get_significant_results(m_mle_EZ)))[1]
 ind = which(row.names(sexde$random.b) == ind.name)
@@ -1245,6 +1246,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zouyuxin/GTEx/blob/7d4d6e3544cccc25500251d693a1be36612dec2a/docs/figure/SexDEpipeline.final.Rmd/unnamed-chunk-5-1.png" target="_blank">7d4d6e3</a>
+</td>
+<td>
+zouyuxin
+</td>
+<td>
+2020-01-15
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zouyuxin/GTEx/blob/9694106b7c46246ebd7693650b389dfe26cebf43/docs/figure/SexDEpipeline.final.Rmd/unnamed-chunk-5-1.png" target="_blank">9694106</a>
 </td>
 <td>
@@ -1268,7 +1280,7 @@ zouyuxin
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.5.3 (2019-03-11)
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS  10.15.2
+Running under: macOS  10.15.3
 
 Matrix products: default
 BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -1282,32 +1294,32 @@ attached base packages:
 
 other attached packages:
 [1] gridExtra_2.3     ggplot2_3.2.0     kableExtra_1.1.0  knitr_1.23       
-[5] mashr_0.2.21.0641 ashr_2.2-39      
+[5] mashr_0.2.21.0641 ashr_2.2-41      
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.3        mvtnorm_1.0-11    lattice_0.20-38  
  [4] assertthat_0.2.1  zeallot_0.1.0     rprojroot_1.3-2  
- [7] digest_0.6.23     foreach_1.4.7     truncnorm_1.0-8  
+ [7] digest_0.6.23     foreach_1.4.8     truncnorm_1.0-8  
 [10] R6_2.4.1          plyr_1.8.5        backports_1.1.5  
-[13] evaluate_0.13     httr_1.4.0        highr_0.8        
+[13] evaluate_0.13     highr_0.8         httr_1.4.0       
 [16] pillar_1.4.2      rlang_0.4.2       lazyeval_0.2.2   
-[19] pscl_1.5.2        rstudioapi_0.10   whisker_0.3-2    
-[22] Matrix_1.2-15     rmarkdown_1.13    labeling_0.3     
-[25] webshot_0.5.1     readr_1.3.1       stringr_1.4.0    
-[28] munsell_0.5.0     mixsqp_0.3-10     compiler_3.5.3   
-[31] httpuv_1.5.1      xfun_0.7          pkgconfig_2.0.3  
-[34] SQUAREM_2017.10-1 htmltools_0.3.6   tidyselect_0.2.5 
-[37] tibble_2.1.3      workflowr_1.5.0   codetools_0.2-16 
-[40] viridisLite_0.3.0 crayon_1.3.4      dplyr_0.8.1      
-[43] withr_2.1.2       later_0.8.0       MASS_7.3-51.1    
-[46] grid_3.5.3        gtable_0.3.0      git2r_0.26.1     
-[49] magrittr_1.5      scales_1.0.0      stringi_1.4.3    
-[52] fs_1.3.1          promises_1.0.1    doParallel_1.0.15
-[55] xml2_1.2.0        vctrs_0.2.0       rmeta_3.0        
-[58] iterators_1.0.12  tools_3.5.3       glue_1.3.1       
-[61] purrr_0.3.2       hms_0.5.2         abind_1.4-5      
-[64] parallel_3.5.3    yaml_2.2.0        colorspace_1.4-1 
-[67] rvest_0.3.4       corrplot_0.84    </code></pre>
+[19] pscl_1.5.2        rstudioapi_0.10   irlba_2.3.3      
+[22] whisker_0.3-2     Matrix_1.2-15     rmarkdown_1.13   
+[25] labeling_0.3      webshot_0.5.1     readr_1.3.1      
+[28] stringr_1.4.0     munsell_0.5.0     mixsqp_0.3-18    
+[31] compiler_3.5.3    httpuv_1.5.1      xfun_0.7         
+[34] pkgconfig_2.0.3   SQUAREM_2020.1    htmltools_0.3.6  
+[37] tidyselect_0.2.5  tibble_2.1.3      workflowr_1.5.0  
+[40] codetools_0.2-16  viridisLite_0.3.0 crayon_1.3.4     
+[43] dplyr_0.8.1       withr_2.1.2       later_0.8.0      
+[46] MASS_7.3-51.1     grid_3.5.3        gtable_0.3.0     
+[49] git2r_0.26.1      magrittr_1.5      scales_1.0.0     
+[52] stringi_1.4.3     fs_1.3.1          promises_1.0.1   
+[55] doParallel_1.0.15 xml2_1.2.0        vctrs_0.2.0      
+[58] rmeta_3.0         iterators_1.0.12  tools_3.5.3      
+[61] glue_1.3.1        purrr_0.3.3       hms_0.5.2        
+[64] abind_1.4-5       parallel_3.5.3    yaml_2.2.0       
+[67] colorspace_1.4-1  rvest_0.3.4       corrplot_0.84    </code></pre>
 </div>
 </div>
 
